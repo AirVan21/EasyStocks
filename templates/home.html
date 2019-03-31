@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>EasyStock</title>
+    <meta name="description" content="The project for market trends visualization">
+    <meta name="author" content="ivan">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css"  href="{% static 'css/bootstrap.css' %}">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome/css/font-awesome.css' %}">
+    <link rel="stylesheet" type="text/css"  href="{% static 'css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+</head>
+<body>
+  <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+  <!-- Navigation -->
+  <nav id="menu" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+      </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li><a href="#stocks" class="page-scroll">Акции</a></li>
+          <li><a href="#bonds" class="page-scroll">Облигации</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Header -->
+  <header id="header">
+    <div class="intro">
+      <div class="overlay">
+        <div class="container">
+          <div class="row">
+            <div class="intro-text">
+              <h1>EasyStocks</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div id="stocks" class="text-center">
+    <div class="container">
+      <div class="section-title">
+        <h2>Акции</h2>
+      </div>
+    </div>
+  </div>
+  <div id="bonds" class="text-center">
+    <div class="container">
+      <div class="section-title">
+        <h2>Облигации</h2>
+      </div>
+    </div>
+  </div>
+  <!-- Footer -->
+  <div id="footer">
+    <div class="container text-center">
+      <div class="col-md-6">
+        <p>&copy; 2019 EasyStocks</p>
+      </div>
+      <div class="col-md-6">
+        <div class="social">
+          <ul>
+            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
