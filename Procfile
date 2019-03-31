@@ -1,0 +1,1 @@
+web: gunicorn EasyStocks.wsgi --log-file -
