@@ -22,7 +22,8 @@ def generate_image(path_to_data, weeks=52, output_folder=''):
     fig = go.Figure(data=[trace],layout=layout)
     base_name = os.path.basename(path_to_data)
     image_path = output_folder + "/" + os.path.splitext(base_name)[0] + '.png'
-    pio.write_image(fig, image_path)
+    pio.write_image(fig, image_path, width=500, height=335)
+    print("Successfully created image " + image_path)
 
 
 parser = argparse.ArgumentParser(description='Generates a candlestick chart using a historical data.')
