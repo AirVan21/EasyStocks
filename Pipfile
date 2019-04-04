@@ -5,6 +5,7 @@ verify_ssl = true
 
 [dev-packages]
 pylint = "*"
+rope = "*"
 
 [packages]
 django = "==2.1.7"
