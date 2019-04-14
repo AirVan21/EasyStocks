@@ -11,6 +11,7 @@ rope = "*"
 django = "==2.1.7"
 gunicorn = "==19.9.0"
 whitenoise = "==3.3.1"
+celery = "*"
 
 [requires]
 python_version = "3.7"
