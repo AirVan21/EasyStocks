@@ -12,13 +12,13 @@ h1, h2, h3, h4 {
 }
 h2 {
 	font-weight: 300;
-	font-size: 32px;
+	font-size: 30px;
 	color: #333;
 	text-transform: uppercase;
 	position: relative;
 	margin-top: 20px;
 	margin-bottom: 15px;
-	padding-bottom: 20px;
+	padding-bottom: 15px;
 }
 h2::after {
 	position: absolute;
@@ -229,13 +229,8 @@ header .intro-text {
 	padding: 0;
 	background: #f6f6f6;
 }
-#about h2::after {
-	bottom: 0;
-	margin-left: 0;
-	left: 0;
-}
 #about .about-text {
-	padding: 50px 0;
+	padding: 35px 0;
 }
 #about .about-img {
 	background: #444 url(../img/stocks/AAPL.png) center center no-repeat;
@@ -244,6 +239,7 @@ header .intro-text {
 }
 #about p {
 	line-height: 26px;
+	font-size: 16px;
 	margin: 15px 0 15px;
 }
 /* Menu Section */
