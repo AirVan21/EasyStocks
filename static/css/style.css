@@ -181,8 +181,8 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
 .intro h1 {
 	font-family: 'Oswald', cursive;
 	color: #fff;
-	font-size: 8em;
-	font-weight: 400;
+	font-size: 6em;
+	font-weight: 300;
 	margin-top: 0;
 }
 .intro span {
