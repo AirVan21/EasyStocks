@@ -18,7 +18,7 @@ h2 {
 	position: relative;
 	margin-top: 20px;
 	margin-bottom: 15px;
-	padding-bottom: 15px;
+	padding-bottom: 10px;
 }
 h2::after {
 	position: absolute;
@@ -103,7 +103,7 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
 	padding: 5px 0;
 	border: 2px solid transparent;
 	letter-spacing: 0.5px;
-	margin: 0 40px 0 40px;
+	margin: 0 80px 0 80px;
 }
 #menu.navbar-default .navbar-nav > li > a:hover {
 	color: #d43031;
@@ -200,227 +200,23 @@ header .intro-text {
 	padding-bottom: 50px;
 	text-align: center;
 }
-/* Features Section */
-#features {
-	padding: 120px 0;
-}
-#features .features-item {
-	margin: 0 20px;
-}
-#features img {
-	margin: 30px auto 20px;
-}
-#features .about-img:before {
-	display: block;
-	content: '';
-	position: absolute;
-	top: 8px;
-	right: 8px;
-	bottom: 8px;
-	left: 8px;
-	border: 1px solid rgba(255, 255, 255, 0.5);
-}
-#features p {
-	line-height: 24px;
-	margin: 15px 0 30px;
-}
 /* About Section */
 #about {
 	padding: 0;
 	background: #f6f6f6;
 }
 #about .about-text {
-	padding: 35px 0;
-}
-#about .about-img {
-	background: #444 url(../img/stocks/AAPL.png) center center no-repeat;
-	background-size: cover;
-	height: 300px;
+	padding: 25px 0;
 }
 #about p {
 	line-height: 26px;
 	font-size: 16px;
 	margin: 15px 0 15px;
 }
-/* Menu Section */
-#restaurant-menu {
-	padding: 100px 0 60px 0;
-}
-#restaurant-menu img {
-	width: 300px;
-	box-shadow: 15px 0 #a7c44c;
-}
-#restaurant-menu h3 {
-	padding: 10px 0;
-	text-transform: uppercase;
-}
-#restaurant-menu .menu-section hr {
-	margin: 0 auto;
-}
-#restaurant-menu .menu-section {
-	margin: 0 20px 80px;
-}
-#restaurant-menu .menu-section-title {
-	font-size: 32px;
-	display: block;
-	font-weight: 400;
-	color: #444;
-	margin: 20px 0;
-	text-align: center;
-}
-#restaurant-menu .menu-item {
-	margin: 45px 0;
-	font-size: 18px;
-}
-#restaurant-menu .menu-item-name {
-	font-weight: 400;
-	font-size: 20px;
-	color: #444;
-	margin-bottom: 10px;
-}
-#restaurant-menu .menu-item-description {
-	font-size: 15px;
-	width: 85%;
-}
-#restaurant-menu .menu-item-price {
-	float: right;
-	font-weight: 400;
-	color: #555;
-	margin-top: -36px;
-}
-/* Gallery Section */
-#gallery {
-	padding: 0;
-}
-#gallery .gallery-item {
-	margin: 0 -15px;
-}
-/* Team Section */
-#team {
-	padding: 120px 0;
-}
-#team h2::after {
-	bottom: 0;
-	margin-left: 0;
-	left: 0;
-}
-#team img {
-	max-width: 550px;
-}
-#team .team-img {
-	display: inline-block;
-	position: relative;
-}
-/* Contact Section */
-#contact {
-	padding: 100px 0;
-	background: #333;
-}
-#contact .contact-item p {
-	font-size: 15px;
-	color: #777;
-}
-#contact .section-title {
-	margin-top: 60px;
-	margin-bottom: 40px;
-}
-#contact form {
-	padding: 0;
-}
-#contact h3 {
-	position: relative;
-	text-transform: uppercase;
-	font-size: 18px;
-	font-weight: 400;
-	color: #aaa;
-	padding: 20px 0;
-}
-#contact h3::after {
-	position: absolute;
-	content: "";
-	background: #d43031;
-	height: 2px;
-	width: 40px;
-	bottom: 0;
-	margin-left: -20px;
-	left: 50%;
-}
-#contact .text-danger {
-	color: #cc0033;
-	text-align: left;
-}
-label {
-	font-size: 12px;
-	font-weight: 400;
-	font-family: 'Open Sans', sans-serif;
-	float: left;
-}
-#contact .form-control {
-	display: block;
-	width: 100%;
-	padding: 6px 12px;
-	font-size: 16px;
-	line-height: 1.42857143;
-	color: #ccc;
-	background-color: rgba(255,255,255,.2);
-	background-image: none;
-	border: 0;
-	border-radius: 0;
-	-webkit-box-shadow: none;
-	box-shadow: none;
-	-webkit-transition: none;
-	-o-transition: none;
-	transition: none;
-}
-#contact .form-control:focus {
-	border-color: #999;
-	outline: 0;
-	-webkit-box-shadow: transparent;
-	box-shadow: transparent;
-}
-.form-control::-webkit-input-placeholder {
-color: #999;
-}
-.form-control:-moz-placeholder {
-color: #999;
-}
-.form-control::-moz-placeholder {
-color: #999;
-}
-.form-control:-ms-input-placeholder {
-color: #999;
-}
-#contact .contact-item {
-	margin: 20px 0 40px 0;
-}
-#contact .contact-item span {
-	font-weight: 400;
-	color: #aaa;
-	text-transform: uppercase;
-	margin-bottom: 6px;
-	display: inline-block;
-}
 /* Footer Section*/
 #footer {
 	background: #262626;
 	padding: 40px 0 20px 0;
-}
-#footer .social {
-	margin-top: -5px;
-	text-align: right;
-}
-#footer .social ul li {
-	display: inline-block;
-	margin: 0 15px;
-}
-#footer .social i.fa {
-	font-size: 24px;
-	padding: 4px;
-	color: #888;
-	transition: all 0.3s;
-}
-#footer .social i.fa:hover {
-	color: #eee;
 }
 #footer p {
 	font-size: 14px;
