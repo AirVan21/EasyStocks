@@ -213,6 +213,16 @@ header .intro-text {
 	font-size: 16px;
 	margin: 15px 0 15px;
 }
+/* Stocks section */
+#stocks .chart {
+	margin: 15px 0 15px;
+}
+#stocks .container .chart:hover {
+    transform: scale(1.05);
+    transition-timing-function: ease-in;
+	transition: 0.3s;
+	margin: 15px 0 15px;
+}
 /* Footer Section*/
 #footer {
 	background: #262626;
