@@ -133,7 +133,8 @@ BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
 CELERY_RESULT_BACKEND = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
 CELERY_BEAT_SCHEDULE = {
     'task-number-one': {
-        'task': 'stocks.tasks.task_number_one',
-        'schedule': 30,
+        'task': 'stocks.tasks.download_data_task',
+        # 'schedule': crontab(minute=0, hour='10'),
+        'schedule' : 30,
     },
 }
