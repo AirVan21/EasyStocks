@@ -11,15 +11,8 @@ from stocks.models import Share
 def download_data_task():
     root_path = os.path.abspath(os.path.dirname(__name__))
     storage_path = root_path + '/static/data'
+    img_path = root_path + '/static/img/stocks'
     for share in Share.objects.all():
         download_data(share.ticker, ALPHA_DOWNLOAD_KEY, storage_path)
-
-
-@task()
-def draw_plot_task():
-    root_path = os.path.abspath(os.path.dirname(__name__))
-    data_path = root_path + '/static/data'
-    storage_path = root_path + '/static/img/stocks'
-    for share in Share.objects.all():
-        csv_path = data_path + '/' + share.ticker + '.csv'
-        generate_image(csv_path, 52, storage_path)
+        csv_path = storage_path + '/' + share.ticker + '.csv'
+        generate_image(csv_path, 52, img_path)

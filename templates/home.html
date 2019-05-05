@@ -94,20 +94,24 @@
         <h2>Акции</h2>
       </div>
       <div class="container">
-        <div class="row">
-          <div class="col-xs-12 col-sm-4 chart">
-              <h3 class="text-center">Apple</h3>
-              <img src="{% static 'img/stocks/AAPL.png' %}" class="img-responsive" alt="">
+        {% block content %}
+          <div class="row">
+            {% for share in object_list|slice:":3" %}
+            <div class="col-xs-12 col-sm-4 chart">
+                <h3 class="text-center">{{ share.title }}</h3>
+                <img src="{% get_static_prefix %}img/stocks/{{ share.ticker }}.png" class="img-responsive" alt="">
+            </div>
+            {% endfor %}
           </div>
-          <div class="col-xs-12 col-sm-4 chart">
-              <h3 class="text-center">Facebook</h3>
-              <img src="{% static 'img/stocks/FB.png' %}" class="img-responsive" alt="">
-          </div>
-          <div class="col-xs-12 col-sm-4 chart">
-              <h3 class="text-center">Google</h3>
-              <img src="{% static 'img/stocks/GOOGL.png' %}" class="img-responsive" alt="">
-          </div>
-        </div>
+          <div class="row">
+              {% for share in object_list|slice:"3:6" %}
+              <div class="col-xs-12 col-sm-4 chart">
+                  <h3 class="text-center">{{ share.title }}</h3>
+                  <img src="{% get_static_prefix %}img/stocks/{{ share.ticker }}.png" class="img-responsive" alt="">
+              </div>
+              {% endfor %}
+            </div>
+        {% endblock content %}
     </div>
   </div>
   <!-- Footer -->
