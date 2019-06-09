@@ -1,6 +1,6 @@
 import argparse
 import requests
-from shared.download_data import get_payload, download_data
+from shared.download_data import get_share_payload, download_share_data
 
 
 parser = argparse.ArgumentParser(description='Downloads historical data from alphavantage.')
@@ -10,4 +10,4 @@ parser.add_argument('folder', metavar='folder', type=str, nargs='?', help='folde
 args = parser.parse_args()
 
 
-download_data(args.symbol, args.apikey, args.folder)
+download_share_data(args.symbol, args.apikey, args.folder)

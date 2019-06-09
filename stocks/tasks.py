@@ -1,7 +1,7 @@
 from __future__ import absolute_import, unicode_literals
 import os
 from celery import task, chain
-from shared.download_data import get_payload, download_data
+from shared.download_data import get_share_payload, download_share_data
 from shared.plotly_draw import generate_image
 from shared.keys import ALPHA_DOWNLOAD_KEY, PLOTLY_KEY
 from stocks.models import Share
@@ -11,7 +11,7 @@ from stocks.models import Share
 def dowload_and_draw(share_name, storage_path, img_path):
     logger = dowload_and_draw.get_logger()
     logger.info("Processing " + share_name)
-    download_data(share_name, ALPHA_DOWNLOAD_KEY, storage_path)
+    download_share_data(share_name, ALPHA_DOWNLOAD_KEY, storage_path)
     csv_path = storage_path + '/' + share_name + '.csv'
     generate_image(csv_path, 52, img_path)
 
