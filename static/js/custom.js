@@ -4,9 +4,9 @@
 
     // PROJECT CAROUSEL
     $('.owl-carousel').owlCarousel({
-    	items: 1,
+    	items: 3,
 	    loop:true,
-	    margin:10,
+	    margin:15,
 	    nav:true
 	});
 
