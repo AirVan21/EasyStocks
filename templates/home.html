@@ -13,7 +13,9 @@
   <link rel="stylesheet" type="text/css"  href="{% static 'css/bootstrap.css' %}">
   <!-- Stylesheet -->
   <link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome/css/font-awesome.css' %}">
-  <link rel="stylesheet" type="text/css"  href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/owl.carousel.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/owl.theme.default.min.css' %}">
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
@@ -114,6 +116,22 @@
         {% endblock content %}
     </div>
   </div>
+  <!-- FX -->
+  <div id="fx" class="text-center">
+    <div class="container">
+      <div class="section-title">
+        <h2>FX</h2>
+      </div>
+      <div class="row">
+        <div class="owl-carousel owl-theme">
+          <div class="item"><h4>1</h4></div>
+          <div class="item"><h4>2</h4></div>
+          <div class="item"><h4>3</h4></div>
+          <div class="item"><h4>4</h4></div>
+        </div>
+      </div>
+    </div>
+  </div>
   <!-- Footer -->
   <div id="footer">
     <div class="container text-center">
@@ -123,4 +141,7 @@
     </div>
   </div>
 </body>
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
 </html>
