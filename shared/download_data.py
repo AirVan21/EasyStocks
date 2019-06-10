@@ -14,6 +14,7 @@ def get_share_payload(symbol, apikey):
 def get_fx_payload(base_ccy, ccy, apikey):
     args = {
         'function'    : 'FX_DAILY',
+        'datatype'    : 'csv',
         'from_symbol' : base_ccy,
         'to_symbol'   : ccy,
         'apikey'      : apikey
@@ -40,4 +41,10 @@ def download_data(request_args, symbol, apikey, folder):
 
 def download_share_data(symbol, apikey='demo', folder=''):
     payload = get_share_payload(symbol, apikey)
+    download_data(payload, symbol, apikey, folder)
+
+
+def download_fx_data(base_ccy, ccy, apikey='demo', folder=''):
+    payload = get_fx_payload(base_ccy, ccy, apikey)
+    symbol = base_ccy + ccy
     download_data(payload, symbol, apikey, folder)

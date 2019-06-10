@@ -5,7 +5,7 @@ import plotly.graph_objs as go
 import plotly.io as pio
 import os
 
-def generate_image(path_to_data, weeks=52, output_folder=''):
+def generate_candle_image(path_to_data, weeks=52, output_folder=''):
     if not os.path.isfile(path_to_data):
         print("Wrong file path: " + path_to_data)
         return
