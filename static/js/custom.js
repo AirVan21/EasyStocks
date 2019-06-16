@@ -7,7 +7,7 @@
     	items: 3,
 	    loop:true,
 	    margin:15,
-	    nav:true
+	    nav:false
 	});
 
 })(jQuery);

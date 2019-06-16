@@ -94,7 +94,7 @@
       <div class="container">
         {% block content %}
           <div class="row">
-            {% for share in object_list|slice:":3" %}
+            {% for share in share_list|slice:":3" %}
             <a href="{% url 'share_detail' share.pk %}">
               <div class="col-xs-12 col-sm-4 chart">
                   <h3 class="text-center">{{ share.title }}</h3>
@@ -104,14 +104,14 @@
             {% endfor %}
           </div>
           <div class="row">
-              {% for share in object_list|slice:"3:6" %}
-              <a href="{% url 'share_detail' share.pk %}">
-                <div class="col-xs-12 col-sm-4 chart">
-                  <h3 class="text-center">{{ share.title }}</h3>
-                  <img src="{% get_static_prefix %}img/stocks/{{ share.ticker }}.png" class="img-responsive" alt="">
-                </div>
-              </a>
-              {% endfor %}
+            {% for share in share_list|slice:"3:6" %}
+            <a href="{% url 'share_detail' share.pk %}">
+              <div class="col-xs-12 col-sm-4 chart">
+                <h3 class="text-center">{{ share.title }}</h3>
+                <img src="{% get_static_prefix %}img/stocks/{{ share.ticker }}.png" class="img-responsive" alt="">
+              </div>
+            </a>
+            {% endfor %}
           </div>
         {% endblock content %}
     </div>
@@ -124,10 +124,12 @@
       </div>
       <div class="row">
         <div class="owl-carousel owl-theme">
-          <div class="item"><h4>1</h4></div>
-          <div class="item"><h4>2</h4></div>
-          <div class="item"><h4>3</h4></div>
-          <div class="item"><h4>4</h4></div>
+        {% for fx_item in currency_list %}
+          <div class="item">
+            <h3 class="text-center">{{ fx_item.title }}</h3>
+            <img src="{% get_static_prefix %}img/currency/{{ fx_item.ticker }}.png" class="img-responsive" alt="">
+          </div>
+        {% endfor %}
         </div>
       </div>
     </div>
