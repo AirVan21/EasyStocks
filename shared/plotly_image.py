@@ -5,7 +5,7 @@ import plotly.plotly as py
 import plotly.graph_objs as go
 import plotly.io as pio
 import os
-from shared.plotly_draw import generate_candle_image
+from plotly_draw import generate_candle_image
 
 parser = argparse.ArgumentParser(description='Generates a candlestick chart using a historical data.')
 parser.add_argument('data', metavar='data', type=str, help='csv file with historical data')

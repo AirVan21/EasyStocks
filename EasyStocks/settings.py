@@ -135,6 +135,10 @@ CELERY_TIMEZONE = 'Europe/Moscow'
 CELERY_BEAT_SCHEDULE = {
     'download_data_task': {
         'task': 'stocks.tasks.download_data_task',
-        'schedule': crontab(minute=00, hour=19),
+        'schedule': crontab(minute=45, hour=18),
+    },
+    'download_fx_data_task': {
+        'task': 'stocks.tasks.download_fx_data_task',
+        'schedule': 300.0,
     },
 }
