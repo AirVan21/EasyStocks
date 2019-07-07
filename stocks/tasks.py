@@ -32,7 +32,7 @@ def download_data_task():
     root_path = os.path.abspath(os.path.dirname(__name__))
     storage_path = root_path + '/static/data'
     img_path_shares = root_path + '/static/img/stocks'
-    share_tasks = [ download_and_draw_share.signature((share.ticker, storage_path, img_path_shares), countdown=10, immutable=True)
+    share_tasks = [ download_and_draw_share.signature((share.ticker, storage_path, img_path_shares), countdown=20, immutable=True)
         for share in Share.objects.all()
     ]
     logger = download_data_task.get_logger()
@@ -46,7 +46,7 @@ def download_fx_data_task():
     storage_path = root_path + '/static/data'
     img_path_fx = root_path + '/static/img/currency'
     fx_tasks = [ download_and_draw_fx.signature((instrument.base_currency, instrument.instrument_currency, 
-                                                 storage_path, img_path_fx), countdown=10, immutable=True)
+                                                 storage_path, img_path_fx), countdown=20, immutable=True)
         for instrument in CurrencyInstrument.objects.all()
     ]
     logger = download_data_task.get_logger()

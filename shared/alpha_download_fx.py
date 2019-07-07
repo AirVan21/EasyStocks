@@ -1,6 +1,5 @@
 import argparse
-import requests
-from download_data import download_fx_data, get_fx_payload
+from download_data import download_fx_data
 
 
 if __name__ == "__main__":
