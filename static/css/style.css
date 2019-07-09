@@ -8,7 +8,7 @@ body, html {
 	height: 100% !important;
 }
 h1, h2, h3, h4 {
-	font-family: 'Raleway', sans-serif;
+	font-family: 'Roboto', sans-serif;
 }
 h2 {
 	font-weight: 300;
@@ -32,7 +32,7 @@ h2::after {
 }
 h3 {
 	font-size: 24px;
-	font-weight: 400;
+	font-weight: 300;
 	color: #333;
 }
 h4 {
