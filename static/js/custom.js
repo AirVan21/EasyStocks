@@ -10,9 +10,9 @@
         responsive:{
             0:{
                 items:1,
-                nav:true
+                nav:false
             },
-            600:{
+            800:{
                 items:3,
                 nav:false
             }
