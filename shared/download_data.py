@@ -25,7 +25,8 @@ def get_fx_payload(base_ccy, ccy, apikey):
 def get_world_trading_daya_payload(symbol, apikey):
     args = {
         'symbol'    : symbol,
-        'api_token' : apikey
+        'api_token' : apikey,
+        'output'    : 'csv'
     }
     return args
 
