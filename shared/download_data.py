@@ -51,7 +51,7 @@ def download_data_csv(request_args, symbol, apikey, folder):
 def download_data_json(request_args, symbol, folder):
     data_url = 'https://api.worldtradingdata.com/api/v1/history?'
     download = requests.get(data_url, params=request_args)
-    print('Sending request for JSON to ' + download.url)
+    print('Sending request for CSV to ' + download.url)
     if download.status_code == requests.codes.ok:
         print("Successful request!")
     else:
@@ -59,10 +59,10 @@ def download_data_json(request_args, symbol, folder):
     # decode binary content
     content = download.content.decode('utf-8')
     # store content to data folder
-    output_name = folder + '/' + symbol + '.json'
+    output_name = folder + '/' + symbol + '.csv'
     with open(output_name, 'w') as output:
         output.write(content)
-        print('JSON is saved into: ' + output_name)
+        print('CSV is saved into: ' + output_name)
 
 
 def download_share_data(symbol, apikey='demo', folder=''):
