@@ -22,7 +22,7 @@ def get_fx_payload(base_ccy, ccy, apikey):
     return args
 
 
-def get_world_trading_daya_payload(symbol, apikey):
+def get_world_trading_data_payload(symbol, apikey):
     args = {
         'symbol'    : symbol,
         'api_token' : apikey,
@@ -65,7 +65,7 @@ def download_data_json(request_args, symbol, folder):
         print('CSV is saved into: ' + output_name)
 
 
-def download_share_data(symbol, apikey='demo', folder=''):
+def download_share_data_alpha(symbol, apikey='demo', folder=''):
     payload = get_share_payload(symbol, apikey)
     download_data_csv(payload, symbol, apikey, folder)
 

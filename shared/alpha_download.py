@@ -1,5 +1,5 @@
 import argparse
-from download_data import download_share_data
+from download_data import download_share_data_alpha
 
 
 if __name__ == "__main__":
@@ -8,4 +8,4 @@ if __name__ == "__main__":
     parser.add_argument('apikey', metavar='apikey', type=str, help='private api key')
     parser.add_argument('folder', metavar='folder', type=str, nargs='?', help='folder for storage')
     args = parser.parse_args()
-    download_share_data(args.symbol, args.apikey, args.folder)
+    download_share_data_alpha(args.symbol, args.apikey, args.folder)
