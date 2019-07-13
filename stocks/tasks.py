@@ -1,21 +1,27 @@
 from __future__ import absolute_import, unicode_literals
 import os
 from celery import task, chain
-from shared.download_data import download_share_data_alpha, download_fx_data
+from shared.download_data import download_share_data_alpha, download_fx_data, download_share_data_wtd
 from shared.plotly_draw import generate_candle_image, generate_fx_image
-from shared.keys import ALPHA_DOWNLOAD_KEY
+from shared.keys import ALPHA_DOWNLOAD_KEY, WORLD_TRADING_DATA_KEY
 from stocks.models import Share, CurrencyInstrument
 
 
 @task()
-def download_and_draw_share(share_name, storage_path, img_path, dataProvider):
-    storage_path = ''.join([storage_path, '/', dataProvider.folder])
+def download_and_draw_share(share_name, mdp_folder, mdp_url, storage_path, img_path):
+    storage_path = ''.join([storage_path, '/', mdp_folder])
     logger = download_and_draw_share.get_logger()
-    logger.info("Processing " + share_name)
-    download_share_data_alpha(share_name, ALPHA_DOWNLOAD_KEY, storage_path)
     csv_path = ''.join([storage_path, '/', share_name, '.csv'])
     weeks_count = 52
-    generate_candle_image(csv_path, weeks_count, img_path)
+    logger.info('Processing ' + share_name + ' ' + storage_path)
+    if mdp_folder == 'alphavantage':
+        download_share_data_alpha(share_name, mdp_url, ALPHA_DOWNLOAD_KEY, storage_path)
+        generate_candle_image(csv_path, weeks_count, img_path)
+    elif mdp_folder == 'worldtradingdata':
+        download_share_data_wtd(share_name, mdp_url, WORLD_TRADING_DATA_KEY, storage_path)
+    else:
+        logger.info('No market data provider specified!')
+        return
 
 
 @task()
@@ -34,9 +40,10 @@ def download_data_task():
     storage_path = root_path + '/static/data'
     img_path_shares = root_path + '/static/img/stocks'
     share_tasks = [download_and_draw_share.signature((share.ticker,
+                                                      share.dataProvider.folder,
+                                                      share.dataProvider.url,
                                                       storage_path,
-                                                      img_path_shares,
-                                                      share.dataProvider),
+                                                      img_path_shares),
                                                      countdown=20,
                                                      immutable=True)
         for share in Share.objects.all()]
