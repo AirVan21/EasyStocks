@@ -76,7 +76,7 @@
   <div id="stocks" class="text-center">
     <div class="container">
       <div class="section-title">
-        <h2>Акции</h2>
+        <h2>Акции 🇺🇸</h2>
       </div>
       <div class="container">
         {% block content %}
@@ -101,6 +101,27 @@
             {% endfor %}
           </div>
         {% endblock content %}
+    </div>
+  </div>
+  <!-- Stocks Russia -->
+  <div id="stocks" class="text-center">
+    <div class="container">
+      <div class="section-title">
+        <h2>Акции 🇷🇺</h2>
+      </div>
+      <div class="container">
+        {% block content_rus %}
+          <div class="row">
+            {% for share in share_list|slice:"6:9" %}
+            <a href="{% url 'share_detail' share.pk %}">
+              <div class="col-xs-12 col-sm-4 chart">
+                  <h3 class="text-center">{{ share.title }}</h3>
+                  <img src="{% get_static_prefix %}img/stocks/{{ share.ticker }}.png" class="img-responsive" alt="">
+              </div>
+            </a>
+            {% endfor %}
+          </div>
+        {% endblock content_rus %}
     </div>
   </div>
   <!-- FX -->
