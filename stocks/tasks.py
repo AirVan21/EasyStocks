@@ -25,10 +25,10 @@ def download_and_draw_share(share_name, mdp_folder, mdp_url, storage_path, img_p
 
 
 @task()
-def download_and_draw_fx(base_ccy, ccy, storage_path, img_path):
+def download_and_draw_fx(base_ccy, ccy, mdp_url, storage_path, img_path):
     logger = download_and_draw_fx.get_logger()
     logger.info('Processing ' + base_ccy + '/' + ccy)
-    download_fx_data(base_ccy, ccy, ALPHA_DOWNLOAD_KEY, storage_path)
+    download_fx_data(base_ccy, ccy, mdp_url, ALPHA_DOWNLOAD_KEY, storage_path)
     csv_path = storage_path + '/' + base_ccy + ccy + '.csv'
     days_count = 60
     generate_fx_image(csv_path, days_count, img_path)
@@ -57,8 +57,10 @@ def download_fx_data_task():
     root_path = os.path.abspath(os.path.dirname(__name__))
     storage_path = root_path + '/static/data'
     img_path_fx = root_path + '/static/img/currency'
+    url = 'https://www.alphavantage.co/query?'
     fx_tasks = [download_and_draw_fx.signature((instrument.base_currency,
                                                 instrument.instrument_currency,
+                                                url,
                                                 storage_path,
                                                 img_path_fx),
                                                countdown=20,

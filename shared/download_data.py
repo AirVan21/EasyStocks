@@ -57,7 +57,7 @@ def download_share_data_wtd(symbol, url, apikey='demo', folder=''):
     download_data_csv(symbol, url, payload, apikey, folder)
 
 
-def download_fx_data(base_ccy, ccy, apikey='demo', folder=''):
+def download_fx_data(base_ccy, ccy, url, apikey='demo', folder=''):
     payload = get_fx_payload(base_ccy, ccy, apikey)
     symbol = base_ccy + ccy
-    download_data_csv(symbol, payload, apikey, folder)
+    download_data_csv(symbol, url, payload, apikey, folder)

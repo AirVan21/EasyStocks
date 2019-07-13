@@ -9,4 +9,5 @@ if __name__ == "__main__":
     parser.add_argument('apikey', metavar='apikey', type=str, help='private api key')
     parser.add_argument('folder', metavar='folder', type=str, nargs='?', help='folder for storage')
     args = parser.parse_args()
-    download_fx_data(args.base_ccy, args.ccy, args.apikey, args.folder)
+    url = 'https://www.alphavantage.co/query?'
+    download_fx_data(args.base_ccy, args.ccy, url, args.apikey, args.folder)
