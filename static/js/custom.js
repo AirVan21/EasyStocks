@@ -12,7 +12,7 @@
                 items:1,
                 nav:false
             },
-            800:{
+            960:{
                 items:3,
                 nav:false
             }
