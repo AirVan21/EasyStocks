@@ -67,6 +67,11 @@
         </div>
         <div class="col-xs-12 col-md-6">
           <div class="about-text">
+            <h3 class="text-center">Статистика</h3>
+            {% block statistics %}
+              <p class="text-center">Количество акций: {{ share_list|length }} <br> Количество валютных пар: {{ currency_list|length }}
+              </p>
+            {% endblock statistics %}
           </div>
         </div>
       </div>
