@@ -88,7 +88,7 @@
           <div class="row">
             {% for share in share_list|slice:":3" %}
             <a href="{% url 'share_detail' share.pk %}">
-              <div class="col-xs-12 col-sm-4 chart">
+              <div class="col-xs-12 col-md-4 chart">
                   <h3 class="text-center">{{ share.title }}</h3>
                   <img src="{% get_static_prefix %}img/stocks/{{ share.ticker }}.png" class="img-responsive" alt="">
               </div>
@@ -98,7 +98,7 @@
           <div class="row">
             {% for share in share_list|slice:"3:6" %}
             <a href="{% url 'share_detail' share.pk %}">
-              <div class="col-xs-12 col-sm-4 chart">
+              <div class="col-xs-12 col-md-4 chart">
                 <h3 class="text-center">{{ share.title }}</h3>
                 <img src="{% get_static_prefix %}img/stocks/{{ share.ticker }}.png" class="img-responsive" alt="">
               </div>
@@ -119,7 +119,7 @@
           <div class="row">
             {% for share in share_list|slice:"6:9" %}
             <a href="{% url 'share_detail' share.pk %}">
-              <div class="col-xs-12 col-sm-4 chart">
+              <div class="col-xs-12 col-md-4 chart">
                   <h3 class="text-center">{{ share.title }}</h3>
                   <img src="{% get_static_prefix %}img/stocks/{{ share.ticker }}.png" class="img-responsive" alt="">
               </div>
@@ -150,7 +150,7 @@
   <!-- Footer -->
   <div id="footer">
     <div class="container text-center">
-      <div class="col-xs-12 col-sm-12">
+      <div class="col-xs-12">
         <p>&copy; 2019 EasyStocks (airvan21)</p>
       </div>
     </div>
