@@ -15,6 +15,7 @@ class Share(models.Model):
     ticker = models.CharField(max_length=10)
     text = models.TextField()
     countryCode = models.CharField(max_length=3)
+    sector = models.CharField(max_length=30)
     dataProvider = models.ForeignKey('MarketDataProvider',
                                      on_delete=models.CASCADE,
                                      null=True,
