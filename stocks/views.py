@@ -11,6 +11,10 @@ class ShareListView(ListView):
         context = super(ShareListView, self).get_context_data(**kwargs)
         context['share_list'] = Share.objects.all()
         context['currency_list'] = CurrencyInstrument.objects.all()
+        context['share_rus'] = list(filter(lambda item: item.countryCode == 'RUS',
+                                           Share.objects.all()))
+        context['share_usa'] = list(filter(lambda item: item.countryCode == 'USA',
+                                           Share.objects.all()))
         context['tech'] = list(filter(lambda item: item.sector == 'tech',
                                       Share.objects.all()))
         context['materials'] = list(filter(lambda item: item.sector == 'materials',
