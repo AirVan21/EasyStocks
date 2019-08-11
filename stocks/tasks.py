@@ -3,8 +3,9 @@ import os
 from celery import task, chain
 from shared.download_data import download_share_data_alpha, download_fx_data, download_share_data_wtd
 from shared.plotly_draw import generate_candle_image, generate_fx_image, generate_candle_image_from_daily
+from shared.news_download import get_news_api_payload, get_start_end_week_dates, download_news_json
 from shared.keys import ALPHA_DOWNLOAD_KEY, WORLD_TRADING_DATA_KEY
-from stocks.models import Share, CurrencyInstrument
+from stocks.models import Share, CurrencyInstrument, Article
 
 
 @task()

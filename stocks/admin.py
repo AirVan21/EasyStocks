@@ -1,7 +1,8 @@
 from django.contrib import admin
-from .models import Share, CurrencyInstrument, MarketDataProvider
+from .models import Share, CurrencyInstrument, MarketDataProvider, Article
 
 
 admin.site.register(Share)
 admin.site.register(CurrencyInstrument)
 admin.site.register(MarketDataProvider)
+admin.site.register(Article)
