@@ -4,7 +4,7 @@ from celery import task, chain
 from shared.download_data import download_share_data_alpha, download_fx_data, download_share_data_wtd
 from shared.plotly_draw import generate_candle_image, generate_fx_image, generate_candle_image_from_daily
 from shared.news_download import get_news_api_payload, get_start_end_week_dates, download_news_json
-from shared.keys import ALPHA_DOWNLOAD_KEY, WORLD_TRADING_DATA_KEY
+from shared.keys import ALPHA_DOWNLOAD_KEY, WORLD_TRADING_DATA_KEY, NEWS_API_KEY
 from stocks.models import Share, CurrencyInstrument, Article
 
 
@@ -71,3 +71,40 @@ def download_fx_data_task():
     logger = download_data_task.get_logger()
     logger.info("Starting FX task chain!")
     chain(fx_tasks).apply_async()
+
+
+@task()
+def download_and_store_news(share_name, share_id):
+    from_date, to_date = get_start_end_week_dates()
+    logger = download_and_store_news.get_logger()
+    logger.info('Downloading news for ' + share_name)
+    articles = download_news_json(get_news_api_payload(share_name,
+                                                       NEWS_API_KEY,
+                                                       from_date,
+                                                       to_date))
+    for article in articles:
+        if not article['author']:
+            continue
+        if not article['title']:
+            continue        
+        db_article = Article(author=article['author'],
+                             title=article['title'],
+                             description=article['description'],
+                             url=article['url'],
+                             url_to_image=article['urlToImage'],
+                             content=article['content'],
+                             publish_dateTime=article['publishedAt'],
+                             share=Share.objects.get(id=share_id))
+        db_article.save()
+
+
+@task()
+def download_news_task():
+    news_tasks = [download_and_store_news.signature((share.title,
+                                                     share.id),
+                                                    countdown=20,
+                                                    immutable=True)
+        for share in Share.objects.all()]
+    logger = download_news_task.get_logger()
+    logger.info("Starting news task chain!")
+    chain(news_tasks).apply_async()

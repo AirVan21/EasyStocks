@@ -21,7 +21,8 @@ def get_start_end_week_dates():
     return week_before, today
 
 
-def download_news_json(url, args):
+def download_news_json(args):
+    url = 'https://newsapi.org/v2/everything?'
     download = requests.get(url, params=args)
     print('Sending request for news ' + download.url)
     if download.status_code == requests.codes.ok:
@@ -40,12 +41,11 @@ if __name__ == "__main__":
     parser.add_argument('apikey', metavar='apikey', type=str, help='private API key')
     parser.add_argument('print', metavar='print', type=bool, nargs='?', help='should print result')
     args = parser.parse_args()
-    url = 'https://newsapi.org/v2/everything?'
     from_date, to_date = get_start_end_week_dates()
-    articles = download_news_json(url, get_news_api_payload(args.query,
-                                                            args.apikey,
-                                                            from_date,
-                                                            to_date))
+    articles = download_news_json(get_news_api_payload(args.query,
+                                                       args.apikey,
+                                                       from_date,
+                                                       to_date))
     if args.print:
         for article in articles:
             print('\n', article['title'])

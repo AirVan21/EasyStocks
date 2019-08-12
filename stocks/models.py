@@ -43,7 +43,7 @@ class Article(models.Model):
     url = models.URLField(blank=True)
     url_to_image = models.URLField(blank=True)
     content = models.TextField(blank=True)
-    publishDateTime = models.DateTimeField(blank=True)
+    publish_dateTime = models.DateTimeField(blank=True)
     share = models.ForeignKey('Share',
                               on_delete=models.CASCADE,
                               null=True)
