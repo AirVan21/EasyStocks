@@ -19,33 +19,30 @@
   <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
 </head>
 <body>
-    {% block detailed %}
-        <div class="container">
-            <div class="row">
-            <h3 class="text-center">{{ share.title }}</h3>
-            <div class="col-xs-12 col-sm-12 text-center">
-                <img src="{% get_static_prefix %}img/stocks/{{ share.ticker }}.png" class="img-responsive center-block">
-            </div>
-            </div>
-        </div>
-    {% endblock %}
+  <div class="text-center">
+    {% block share_name %}
+      <h2>{{ share.title }}</h2>
+    {% endblock share_name %}
+  </div>
+  <div id="news" class="container" >
     <div class="text-center">
+      <h2>Новости</h2>
+    </div>
     <div class="container">
-      <div class="section-title">
-        <h2>Новости</h2>
-      </div>
-      <div class="container">
-        {% block newsblock %}
-          <div class="row">
-            {% for article in news|slice:":15" %}
-              <div class="col-xs-12 col-md-4 chart">
-                <h4>{{ article.title }}</h4>
+      {% block newsblock %}
+        <div class="row">
+          {% for article in news|slice:":9" %}
+            <a href="{{ article.url }}">
+              <div class="col-xs-12 col-md-4 item">
+                <h3 class="text-center">{{ article.title }}</h3>
+                <img src="{{ article.url_to_image }}" class="img-responsive center-block">
+                <br/>
                 <p>{{ article.description }}</p>
               </div>
-            {% endfor %}
-          </div>
-        {% endblock newsblock %}
-    </div>
-    </div>
+            </a>
+          {% endfor %}
+        </div>
+      {% endblock newsblock %}
+  </div>
 </body>
 </html>
