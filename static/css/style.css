@@ -25,6 +25,7 @@ h2::after {
 	content: "";
 	background: #d43031;
 	height: 2px;
+
 	width: 90px;
 	bottom: 0;
 	margin-left: -45px;
@@ -52,13 +53,6 @@ p {
 p.intro {
 	margin: 12px 0 0;
 	line-height: 24px;
-}
-a {
-	color: #8eb640;
-}
-a:hover, a:focus {
-	text-decoration: none;
-	color: #222;
 }
 ul, ol {
 	list-style: none;
@@ -137,6 +131,23 @@ header .intro-text {
     transition-timing-function: ease-in;
 	transition: 0.3s;
 	margin: 15px 0 15px;
+}
+/* News section */
+#news .item {
+	margin: 20px 0 20px;
+}
+#news .container .item:hover {
+	transform: scale(1.03);
+    transition-timing-function: ease-in;
+	transition: 0.3s;
+	margin: 20px 0 20px;
+}
+#news p {
+	font-size: 14px;
+	color: #262626;
+}
+#news a {
+	color: #262626
 }
 /* Footer Section*/
 #footer {

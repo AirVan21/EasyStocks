@@ -86,7 +86,15 @@ def download_and_store_news(share_name, share_id):
         if not article['author']:
             continue
         if not article['title']:
-            continue        
+            continue
+        if not article['description']:
+            continue
+        if not article['url']:
+            continue
+        if not article['urlToImage']:
+            continue
+        if not article['content']:
+            continue
         db_article = Article(author=article['author'],
                              title=article['title'],
                              description=article['description'],
