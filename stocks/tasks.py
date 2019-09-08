@@ -82,18 +82,8 @@ def download_and_store_news(share_name, share_id):
                                                        NEWS_API_KEY,
                                                        from_date,
                                                        to_date))
-    for article in articles:
-        if not article['author']:
-            continue
-        if not article['title']:
-            continue
-        if not article['description']:
-            continue
-        if not article['url']:
-            continue
-        if not article['urlToImage']:
-            continue
-        if not article['content']:
+    for article in articles[:45:3]:
+        if not Article.are_valid_arguments(article):
             continue
         db_article = Article(author=article['author'],
                              title=article['title'],

@@ -23,6 +23,11 @@
     {% block share_name %}
       <h2>{{ share.title }}</h2>
     {% endblock share_name %}
+    <div class="container">
+      <div class="row">
+        <canvas id="line-chart"></canvas>
+      </div>
+    </div>
   </div>
   <div id="news" class="container" >
     <div class="text-center">
@@ -54,4 +59,6 @@
     </div>
   </div>
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"></script>
+<script src="{% static 'js/custom-line-chart.js' %}"></script>
 </html>

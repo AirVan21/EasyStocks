@@ -50,3 +50,23 @@ class Article(models.Model):
 
     def __str__(self):
         return self.title
+
+    @staticmethod
+    def are_valid_arguments(article_dict):
+        if not article_dict['author']:
+            return False
+        if not article_dict['title']:
+            return False
+        if not article_dict['description']:
+            return False
+        if not article_dict['url']:
+            return False
+        if not article_dict['urlToImage']:
+            return False
+        if not article_dict['content']:
+            return False
+
+    @staticmethod
+    def get_source_name(article_dict):
+        source = article_dict['source']
+        return source['name']
