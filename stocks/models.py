@@ -25,6 +25,19 @@ class Share(models.Model):
         return self.title
 
 
+class ShareDataItem(models.Model):
+    share = models.ForeignKey('Share',
+                              on_delete=models.CASCADE,
+                              null=True,
+                              blank=True)
+    date = models.DateField()
+    open_price = models.FloatField()
+    high_price = models.FloatField()
+    low_price = models.FloatField()
+    close_price = models.FloatField()
+    volume = models.FloatField()
+
+
 class CurrencyInstrument(models.Model):
     title = models.CharField(max_length=200)
     ticker = models.CharField(max_length=10)
