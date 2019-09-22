@@ -17,6 +17,7 @@
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"></script>
 </head>
 <body>
   <div class="text-center">
@@ -25,7 +26,31 @@
     {% endblock share_name %}
     <div class="container">
       <div class="row">
-        <canvas id="line-chart"></canvas>
+        {% block datachart %}
+          <canvas id="line-chart"></canvas>
+          <script>
+            var chart = new Chart(document.getElementById("line-chart"), {
+              type: 'line',
+              data: {
+                labels: [{% for date in dates %},{% endfor %}],
+                datasets: [{ 
+                    data: [{% for data in chart_data %}{{ data.close_price }},{% endfor %}],
+                    label: "Visa",
+                    borderColor: "#3e95cd",
+                    fill: false
+                  },
+                ]
+              },
+              options: {
+                title: {
+                  display: true,
+                  responsive: true,
+                  text: 'Stock price'
+                },
+              },
+            });
+          </script>
+        {% endblock datachart %}
       </div>
     </div>
   </div>
@@ -59,6 +84,4 @@
     </div>
   </div>
 </body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"></script>
-<script src="{% static 'js/custom-line-chart.js' %}"></script>
 </html>
