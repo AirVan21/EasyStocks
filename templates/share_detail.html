@@ -35,7 +35,7 @@
                 labels: [{% for date in dates %},{% endfor %}],
                 datasets: [{ 
                     data: [{% for data in chart_data %}{{ data.close_price }},{% endfor %}],
-                    label: "Visa",
+                    label: {% block chart_info %}"{{ share.title }}"{% endblock chart_info %},
                     borderColor: "#3e95cd",
                     fill: false
                   },
@@ -43,9 +43,9 @@
               },
               options: {
                 title: {
-                  display: true,
+                  display: false,
                   responsive: true,
-                  text: 'Stock price'
+                  text: 'Stock prices'
                 },
               },
             });
@@ -61,7 +61,19 @@
     <div class="container">
       {% block newsblock %}
         <div class="row">
-          {% for article in news|slice:":9" %}
+          {% for article in news|slice:":3" %}
+            <a href="{{ article.url }}">
+              <div class="col-xs-12 col-md-4 item">
+                <h3 class="text-center">{{ article.title }}</h3>
+                <img src="{{ article.url_to_image }}" class="img-responsive center-block">
+                <br/>
+                <p>{{ article.description }}</p>
+              </div>
+            </a>
+          {% endfor %}
+        </div>
+        <div class="row">
+          {% for article in news|slice:"3:6" %}
             <a href="{{ article.url }}">
               <div class="col-xs-12 col-md-4 item">
                 <h3 class="text-center">{{ article.title }}</h3>
