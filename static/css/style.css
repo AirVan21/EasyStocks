@@ -165,3 +165,9 @@ header .intro-text {
 #footer a:hover {
 	color: #eee;
 }
+/* Share page header */
+#share_header {
+	background: #fff;
+	padding: 20px 0 20px 0;
+	width:100%;
+}

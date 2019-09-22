@@ -20,6 +20,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"></script>
 </head>
 <body>
+  <div id="share_header">
+    <div class="container text-left">
+      <div class="col-xs-12">
+        <h3><a href="{% url 'home' %}">EasyStocks</a></h3>
+      </div>
+    </div>
+  </div>
   <div class="text-center">
     {% block share_name %}
       <h2>{{ share.title }}</h2>
