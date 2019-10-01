@@ -71,7 +71,7 @@ def generate_candle_image_from_daily(path_to_data, weeks=52, output_folder=''):
     print("Successfully created image " + image_path)
 
 
-def resample_daily_data_to_weekly(path_to_data, output_folder=''):
+def resample_daily_data_to_weekly(path_to_data):
     if not os.path.isfile(path_to_data):
         print("Wrong file path: " + path_to_data)
         return
