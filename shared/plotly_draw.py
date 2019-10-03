@@ -69,3 +69,21 @@ def generate_candle_image_from_daily(path_to_data, weeks=52, output_folder=''):
     image_path = ''.join([output_folder, '/', os.path.splitext(base_name)[0], '.png'])
     pio.write_image(fig, image_path, width=500, height=335)
     print("Successfully created image " + image_path)
+
+
+def resample_daily_data_to_weekly(path_to_data):
+    if not os.path.isfile(path_to_data):
+        print("Wrong file path: " + path_to_data)
+        return
+    df = pd.read_csv(path_to_data)
+    df['Date'] = pd.to_datetime(df['Date'], errors='ignore')
+    # Resamples daily data to weekly
+    df.set_index('Date', inplace=True)
+    aggregator = {'Open'  : 'first',
+                  'Close' : 'last',
+                  'High'  : 'max',
+                  'Low'   : 'min',
+                  'Volume': 'sum'}
+    offset = pd.offsets.timedelta(days=-6)
+    df = df.resample('W', loffset=offset).apply(aggregator)
+    df.to_csv(path_to_data, index=None)
