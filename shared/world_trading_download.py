@@ -1,5 +1,17 @@
 import argparse
-from download_data import download_share_data_wtd
+from shared.download_data import download_share_data_wtd
+
+
+def get_column_name_mapping():
+    mapping = {
+        'Date': 'timestamp',
+        'Open': 'open',
+        'Close': 'close',
+        'High': 'high',
+        'Low': 'low',
+        'Volume': 'volume'
+    }
+    return mapping
 
 
 if __name__ == "__main__":

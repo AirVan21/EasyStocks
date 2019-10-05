@@ -1,4 +1,3 @@
-import csv
 import pandas as pd
 import argparse
 from datetime import datetime

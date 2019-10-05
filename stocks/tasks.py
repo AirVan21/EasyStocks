@@ -2,7 +2,9 @@ from __future__ import absolute_import, unicode_literals
 import os
 from celery import task, chain
 from shared.download_data import download_share_data_alpha, download_fx_data, download_share_data_wtd
-from shared.plotly_draw import generate_candle_image, generate_fx_image, generate_candle_image_from_daily
+from shared.plotly_draw import generate_candle_image, generate_fx_image
+from shared.data_manager import DataManager
+from shared.world_trading_download import get_column_name_mapping
 from shared.news_download import get_news_api_payload, get_start_end_week_dates, download_news_json
 from shared.keys import ALPHA_DOWNLOAD_KEY, WORLD_TRADING_DATA_KEY, NEWS_API_KEY
 from stocks.models import Share, CurrencyInstrument, Article
@@ -20,7 +22,10 @@ def download_and_draw_share(share_name, mdp_folder, mdp_url, storage_path, img_p
         generate_candle_image(csv_path, weeks_count, img_path)
     elif mdp_folder == 'worldtradingdata':
         download_share_data_wtd(share_name, mdp_url, WORLD_TRADING_DATA_KEY, storage_path)
-        generate_candle_image_from_daily(csv_path, weeks_count, img_path)
+        manager = DataManager(storage_path)
+        manager.resample_daily_data_to_weekly()
+        manager.rename_columns(get_column_name_mapping())
+        generate_candle_image(csv_path, weeks_count, img_path)
     else:
         logger.info('No market data provider specified!')
         return
