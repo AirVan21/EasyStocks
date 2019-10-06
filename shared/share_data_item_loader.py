@@ -1,6 +1,5 @@
 import pandas as pd
 import argparse
-from datetime import datetime
 from stocks.models import ShareDataItem, Share
 
 
@@ -14,9 +13,13 @@ class ShareDataItemLoader(object):
         if not share_items:
             print('Did not find related share!')
             return
-        csv_file = pd.read_csv(self.path, nrows=count, delimiter=',')
+        csv_file = pd.read_csv(self.path, delimiter=',')
+        csv_file['timestamp'] = pd.to_datetime(csv_file['timestamp'],
+                                               errors='ignore')
+        csv_file.sort_values(by=['timestamp'], inplace=True, ascending=False)
+        csv_file = csv_file.head(count)
         for index, row in csv_file.iterrows():
-            date_value = datetime.strptime(row['timestamp'], '%Y-%m-%d').date()
+            date_value = row['timestamp'].date()
             data_share_item = ShareDataItem(share=share_items.first(),
                                             date=date_value,
                                             open_price=row['open'],
@@ -25,6 +28,13 @@ class ShareDataItemLoader(object):
                                             close_price=row['close'],
                                             volume=row['volume'])
             data_share_item.save()
+
+    def clear_items(self):
+        share_items = Share.objects.filter(ticker=self.ticker)
+        if not share_items:
+            print('Did not find related share!')
+            return
+        ShareDataItem.objects.filter(share=share_items.first()).delete()
 
 
 if __name__ == '__main__':
