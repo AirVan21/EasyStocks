@@ -39,7 +39,7 @@
             var chart = new Chart(document.getElementById("line-chart"), {
               type: 'line',
               data: {
-                labels: [{% for date in dates %},{% endfor %}],
+                labels: [{% for date in dates %}"{{ date }}",{% endfor %}],
                 datasets: [{ 
                     data: [{% for data in chart_data %}{{ data.close_price }},{% endfor %}],
                     label: {% block chart_info %}"{{ share.title }}"{% endblock chart_info %},
@@ -54,7 +54,25 @@
                   responsive: true,
                   text: 'Stock prices'
                 },
-              },
+                scales: {
+                  xAxes: [{
+                    type: 'time',
+                    time: {
+                      displayFormats: {
+                        'millisecond': 'MMM DD',
+                        'second': 'MMM DD',
+                        'minute': 'MMM DD',
+                        'hour': 'MMM DD',
+                        'day': 'MMM DD',
+                        'week': 'MMM DD',
+                        'month': 'MMM DD',
+                        'quarter': 'MMM DD',
+                        'year': 'MMM DD',
+                      }
+                    }
+                  }],
+                },
+              }
             });
           </script>
         {% endblock datachart %}
