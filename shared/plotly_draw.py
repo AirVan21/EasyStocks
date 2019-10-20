@@ -18,6 +18,7 @@ def generate_candle_image(path_to_data, weeks=52, output_folder=''):
                            close=last_df.close)
     layout = go.Layout(xaxis=dict(rangeslider=dict(visible=False)))
     fig = go.Figure(data=[trace], layout=layout)
+    fig.layout.template = 'plotly_white'
     base_name = os.path.basename(path_to_data)
     image_path = output_folder + "/" + os.path.splitext(base_name)[0] + '.png'
     pio.write_image(fig, image_path, width=500, height=335)
@@ -34,6 +35,7 @@ def generate_fx_image(path_to_data, days=60, output_folder=''):
     trace = go.Scatter(x=last_df.timestamp, y=last_df.close)
     layout = go.Layout(xaxis=dict(rangeslider=dict(visible=False)))
     fig = go.Figure(data=[trace], layout=layout)
+    fig.layout.template = 'plotly_white'
     base_name = os.path.basename(path_to_data)
     image_path = output_folder + "/" + os.path.splitext(base_name)[0] + '.png'
     pio.write_image(fig, image_path, width=450, height=300)
@@ -54,6 +56,7 @@ def generate_candle_image_from_daily(path_to_data, weeks=52, output_folder=''):
                            close=last_df.Close)
     layout = go.Layout(xaxis=dict(rangeslider=dict(visible=False)))
     fig = go.Figure(data=[trace], layout=layout)
+    fig.layout.template = 'plotly_white'
     base_name = os.path.basename(path_to_data)
     image_path = ''.join([output_folder, '/', os.path.splitext(base_name)[0], '.png'])
     pio.write_image(fig, image_path, width=500, height=335)

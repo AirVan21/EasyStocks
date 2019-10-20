@@ -22,7 +22,7 @@ def download_and_draw_share(share_name, mdp_folder, mdp_url, storage_path, img_p
         generate_candle_image(csv_path, weeks_count, img_path)
     elif mdp_folder == 'worldtradingdata':
         download_share_data_wtd(share_name, mdp_url, WORLD_TRADING_DATA_KEY, storage_path)
-        manager = DataManager(storage_path)
+        manager = DataManager(csv_path)
         manager.resample_daily_data_to_weekly()
         manager.rename_columns(get_column_name_mapping())
         generate_candle_image(csv_path, weeks_count, img_path)
