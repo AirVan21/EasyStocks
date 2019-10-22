@@ -141,11 +141,9 @@ CELERY_BEAT_SCHEDULE = {
     'download_fx_data_task': {
         'task': 'stocks.tasks.download_fx_data_task',
         'schedule': crontab(minute=55, hour=19),
-        # 'schedule': 300.0,
     },
     'download_news_task': {
         'task': 'stocks.tasks.download_news_task',
-        'schedule': crontab(minute=0, hour=0, day_of_week='friday')
-        # 'schedule': 300.0,
+        'schedule': crontab(minute=0, hour=0, day_of_week='friday'),
     },
 }

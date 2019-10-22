@@ -23,6 +23,7 @@ class DataManager(object):
         df = df.resample('W', loffset=offset).apply(aggregator)
         df.reset_index(level=0, inplace=True)
         df.dropna(inplace=True)
+        df.sort_values(by=['Date'], inplace=True, ascending=False)
         df.to_csv(self.path, index=None)
 
     def rename_columns(self, mapping):
