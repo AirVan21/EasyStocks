@@ -21,6 +21,7 @@ plotly = "*"
 chart-studio = "*"
 pylama = "*"
 psutil = "*"
+pip = "*"
 
 [requires]
 python_version = "3.7"
