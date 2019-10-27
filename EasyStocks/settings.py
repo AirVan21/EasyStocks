@@ -144,6 +144,6 @@ CELERY_BEAT_SCHEDULE = {
     },
     'download_news_task': {
         'task': 'stocks.tasks.download_news_task',
-        'schedule': crontab(minute=0, hour=0, day_of_week='friday'),
+        'schedule': crontab(minute=30, hour=20, day_of_week='friday'),
     },
 }
