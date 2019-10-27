@@ -78,6 +78,7 @@ class Article(models.Model):
             return False
         if not article_dict['content']:
             return False
+        return True
 
     @staticmethod
     def get_source_name(article_dict):
