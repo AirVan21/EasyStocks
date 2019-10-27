@@ -3,30 +3,31 @@ import requests
 
 def get_share_payload(symbol, apikey):
     args = {
-        'function' : 'TIME_SERIES_WEEKLY', # Period
-        'datatype' : 'csv',                # Format
-        'symbol'   : symbol,               # Stock symbol
-        'apikey'   : apikey                # Private user identifier
+        'function': 'TIME_SERIES_WEEKLY',  # Period
+        'datatype': 'csv',                 # Format
+        'symbol': symbol,                  # Stock symbol
+        'apikey': apikey                   # Private user identifier
     }
     return args
 
 
 def get_fx_payload(base_ccy, ccy, apikey):
     args = {
-        'function'    : 'FX_DAILY',
-        'datatype'    : 'csv',
-        'from_symbol' : base_ccy,
-        'to_symbol'   : ccy,
-        'apikey'      : apikey
+        'function': 'FX_DAILY',
+        'datatype': 'csv',
+        'from_symbol': base_ccy,
+        'to_symbol': ccy,
+        'apikey': apikey
     }
     return args
 
 
 def get_world_trading_data_payload(symbol, apikey):
     args = {
-        'symbol'    : symbol,
-        'api_token' : apikey,
-        'output'    : 'csv'
+        'symbol': symbol,
+        'api_token': apikey,
+        'sort': 'newest',
+        'output': 'csv',
     }
     return args
 

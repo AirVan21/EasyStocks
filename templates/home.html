@@ -120,8 +120,16 @@
             {% for share in share_rus|slice:":3" %}
             <a href="{% url 'share_detail' share.pk %}">
               <div class="col-xs-12 col-md-4 chart">
-                  <h3 class="text-center">{{ share.title }}</h3>
-                  <img src="{% get_static_prefix %}img/stocks/{{ share.ticker }}.png" class="img-responsive center-block" alt="">
+                <h3 class="text-center">{{ share.title }}</h3>
+                <img src="{% get_static_prefix %}img/stocks/{{ share.ticker }}.png" class="img-responsive center-block" alt="">
+              </div>
+            </a>
+            {% endfor %}
+            {% for share in share_rus|slice:"3:6" %}
+            <a href="{% url 'share_detail' share.pk %}">
+              <div class="col-xs-12 col-md-4 chart">
+                <h3 class="text-center">{{ share.title }}</h3>
+                <img src="{% get_static_prefix %}img/stocks/{{ share.ticker }}.png" class="img-responsive center-block" alt="">
               </div>
             </a>
             {% endfor %}

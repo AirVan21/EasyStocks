@@ -1,5 +1,5 @@
 import argparse
-from shared.download_data import download_share_data_wtd
+from download_data import download_share_data_wtd
 
 
 def get_column_name_mapping():

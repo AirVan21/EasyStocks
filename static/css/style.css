@@ -168,6 +168,9 @@ header .intro-text {
 /* Share page header */
 #share_header {
 	background: #fff;
-	padding: 20px 0 20px 0;
-	width:100%;
+	padding: 20px 10px 10px 10px;
+	width:50%;
+}
+#share_header .container .item:hover {
+	opacity: 0.5;
 }
