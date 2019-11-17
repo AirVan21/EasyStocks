@@ -169,7 +169,7 @@ header .intro-text {
 #share_header {
 	background: #fff;
 	padding: 20px 10px 10px 10px;
-	width:50%;
+	width:90%;
 }
 #share_header .container .item:hover {
 	opacity: 0.5;

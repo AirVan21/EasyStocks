@@ -23,16 +23,12 @@
   <div id="share_header">
     <div class="container">
       <div class="row">
-        <div class="col-xs-12 col-md-4 item">
-          <a href="{% url 'home' %}">
-            <div class="col-xs-6 col-md-2">
-              <img src="{% get_static_prefix %}img/candlestick-logo.png"></img>
-            </div>
-            <div class="col-xs-6 col-md-2" class="text-left">
-              <h3>EasyStocks</h3>
-            </div>
-          </a>
-        </div>
+        <a href="{% url 'home' %}">
+          <div class="col-xs-12 col-md-3 item">
+            <img class="pull-left" src="{% get_static_prefix %}img/candlestick-logo.png"></img>
+            <h3 class="pull-left">EasyStocks</h3>
+          </div>
+        </a>
       </div>
     </div>
   </div>
