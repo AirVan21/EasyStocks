@@ -111,7 +111,7 @@ header .intro-text {
 }
 /* About Section */
 #about {
-	padding: 0;
+	padding: 15px;
 	background: #f6f6f6;
 }
 #about .about-text {

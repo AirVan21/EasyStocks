@@ -36,6 +36,8 @@
     {% block share_name %}
       <h2>{{ share.title }}</h2>
     {% endblock share_name %}
+  </div>
+  <div class="text-center">
     <div class="container">
       <div class="row">
         {% block datachart %}
@@ -81,6 +83,20 @@
             });
           </script>
         {% endblock datachart %}
+      </div>
+    </div>
+  </div>
+  <div id="about">
+    <div class="container-fluid text-center">
+      <div class="row">
+        <div class="col-xs-12 col-md-6">
+          <div class="about-text">
+            {% block share_description %}
+              <h3>О компании</h3>
+              <p class="text-center">{{ share.text }}</p>
+            {% endblock share_description %}
+          </div>
+        </div>
       </div>
     </div>
   </div>
