@@ -1,0 +1,5 @@
+# Editors
+.vscode
+
+# Storage related
+.DS_Store
