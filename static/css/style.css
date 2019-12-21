@@ -11,12 +11,11 @@ h1, h2, h3, h4 {
 	font-family: 'Roboto', sans-serif;
 }
 h2 {
-	font-weight: 280;
-	font-size: 30px;
+	font-weight: 300;
+	font-size: 28px;
 	color: #333;
-	text-transform: uppercase;
 	position: relative;
-	margin-top: 20px;
+	margin-top: 15px;
 	margin-bottom: 15px;
 	padding-bottom: 10px;
 }
@@ -26,9 +25,9 @@ h2::after {
 	background: #d43031;
 	height: 2px;
 
-	width: 90px;
+	width: 100px;
 	bottom: 0;
-	margin-left: -45px;
+	margin-left: -50px;
 	left: 50%;
 }
 h3 {

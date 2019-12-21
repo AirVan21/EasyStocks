@@ -86,21 +86,11 @@
       <div class="container">
         {% block content %}
           <div class="row">
-            {% for share in share_usa|slice:":3" %}
+            {% for share in share_usa|slice:":6" %}
             <a href="{% url 'share_detail' share.pk %}">
-              <div class="col-xs-12 col-md-4 chart">
+              <div class="col-xs-6 col-md-4 chart">
                   <h3 class="text-center">{{ share.title }}</h3>
                   <img src="{% get_static_prefix %}img/stocks/{{ share.ticker }}.png" class="img-responsive center-block" alt="">
-              </div>
-            </a>
-            {% endfor %}
-          </div>
-          <div class="row">
-            {% for share in share_usa|slice:"3:6" %}
-            <a href="{% url 'share_detail' share.pk %}">
-              <div class="col-xs-12 col-md-4 chart">
-                <h3 class="text-center">{{ share.title }}</h3>
-                <img src="{% get_static_prefix %}img/stocks/{{ share.ticker }}.png" class="img-responsive center-block" alt="">
               </div>
             </a>
             {% endfor %}
@@ -117,17 +107,9 @@
       <div class="container">
         {% block content_rus %}
           <div class="row">
-            {% for share in share_rus|slice:":3" %}
+            {% for share in share_rus|slice:":6" %}
             <a href="{% url 'share_detail' share.pk %}">
-              <div class="col-xs-12 col-md-4 chart">
-                <h3 class="text-center">{{ share.title }}</h3>
-                <img src="{% get_static_prefix %}img/stocks/{{ share.ticker }}.png" class="img-responsive center-block" alt="">
-              </div>
-            </a>
-            {% endfor %}
-            {% for share in share_rus|slice:"3:6" %}
-            <a href="{% url 'share_detail' share.pk %}">
-              <div class="col-xs-12 col-md-4 chart">
+              <div class="col-xs-6 col-md-4 chart">
                 <h3 class="text-center">{{ share.title }}</h3>
                 <img src="{% get_static_prefix %}img/stocks/{{ share.ticker }}.png" class="img-responsive center-block" alt="">
               </div>
@@ -152,6 +134,13 @@
           </div>
         {% endfor %}
         </div>
+      </div>
+    </div>
+  </div>
+  <div id="overall" class="text-center">
+    <div class="container">
+      <div class="section-title">
+        <h2>Итоги</h2>
       </div>
     </div>
   </div>
