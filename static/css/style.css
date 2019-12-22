@@ -11,7 +11,7 @@ h1, h2, h3, h4 {
 	font-family: 'Roboto', sans-serif;
 }
 h2 {
-	font-weight: 300;
+	font-weight: 260;
 	font-size: 28px;
 	color: #333;
 	position: relative;
@@ -31,14 +31,14 @@ h2::after {
 	left: 50%;
 }
 h3 {
-	font-size: 24px;
-	font-weight: 300;
+	font-size: 22px;
+	font-weight: 260;
 	color: #333;
 }
 h4 {
-	font-size: 22px;
+	font-size: 20px;
 	text-transform: uppercase;
-	font-weight: 400;
+	font-weight: 260;
 	color: #333;
 }
 h5 {
@@ -55,11 +55,6 @@ p.intro {
 }
 ul, ol {
 	list-style: none;
-}
-ul, ol {
-	padding: 0;
-	webkit-padding: 0;
-	moz-padding: 0;
 }
 .btn:active, .btn.active {
 	background-image: none;
