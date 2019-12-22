@@ -14,6 +14,16 @@ def get_column_name_mapping():
     return mapping
 
 
+def get_aggregator_wtd():
+    aggregator = {
+        'Open': 'first',
+        'Close': 'last',
+        'High': 'max',
+        'Low': 'min',
+        'Volume': 'sum'}
+    return aggregator
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Downloads historical data from world trading data.')
     parser.add_argument('symbol', metavar='symbol', type=str, help='stock symbol')

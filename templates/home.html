@@ -32,6 +32,7 @@
         accurateTrackBounce:true
     });
   </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"></script>
   <noscript><div><img src="https://mc.yandex.ru/watch/53274031" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
   <!-- /Yandex.Metrika counter -->
   <!-- Google -->
@@ -141,6 +142,47 @@
     <div class="container">
       <div class="section-title">
         <h2>Итоги</h2>
+      </div>
+      <div class="row">
+        <div class="col-xs-6">
+          {% block trendschart %}
+            <canvas id="doughnut-chart"></canvas>
+            <script>
+              var data = {
+                  datasets: [{
+                      data: {{ share_rus_trends }},
+                      backgroundColor: [
+                        "#32CD32",
+                        "#FF4500",
+                      ],
+                  }],
+                  labels: [
+                      'Рост',
+                      'Падение'
+                  ]
+              };
+              var options = {
+                responsive: true,
+                legend: {
+                  position: 'top',
+                },
+                title: {
+                  display: true,
+                  text: 'Итоги недели акций 🇷🇺',
+                },
+                animation: {
+                  animateScale: true,
+                  animateRotate: true
+                }
+              }
+              var myDoughnutChart = new Chart(document.getElementById("doughnut-chart"), {
+                  type: 'doughnut',
+                  data: data,
+                  options: options
+              });
+            </script>
+          {% endblock trendschart %}
+        </div>
       </div>
     </div>
   </div>

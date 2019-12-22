@@ -2,6 +2,16 @@ import argparse
 from download_data import download_share_data_alpha
 
 
+def get_aggregator_alpha():
+    aggregator = {
+        'open': 'first',
+        'close': 'last',
+        'high': 'max',
+        'low': 'min',
+        'volume': 'sum'}
+    return aggregator
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Downloads historical data from alphavantage.')
     parser.add_argument('symbol', metavar='symbol', type=str, help='stock symbol')

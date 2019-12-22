@@ -11,7 +11,7 @@ h1, h2, h3, h4 {
 	font-family: 'Roboto', sans-serif;
 }
 h2 {
-	font-weight: 260;
+	font-weight: 280;
 	font-size: 28px;
 	color: #333;
 	position: relative;
@@ -32,13 +32,13 @@ h2::after {
 }
 h3 {
 	font-size: 22px;
-	font-weight: 260;
+	font-weight: 280;
 	color: #333;
 }
 h4 {
 	font-size: 20px;
 	text-transform: uppercase;
-	font-weight: 260;
+	font-weight: 280;
 	color: #333;
 }
 h5 {

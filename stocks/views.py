@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from .models import Share, CurrencyInstrument, Article, ShareDataItem
 
@@ -11,15 +10,24 @@ class ShareListView(ListView):
         context = super(ShareListView, self).get_context_data(**kwargs)
         context['share_list'] = Share.objects.all()
         context['currency_list'] = CurrencyInstrument.objects.all()
-        context['share_rus'] = list(filter(lambda item: item.countryCode == 'RUS',
-                                           Share.objects.all()))
-        context['share_usa'] = list(filter(lambda item: item.countryCode == 'USA',
-                                           Share.objects.all()))
-        context['tech'] = list(filter(lambda item: item.sector == 'tech',
-                                      Share.objects.all()))
-        context['materials'] = list(filter(lambda item: item.sector == 'materials',
-                                           Share.objects.all()))
+        context['share_rus'] = Share.objects.filter(countryCode='RUS')
+        context['share_usa'] = Share.objects.filter(countryCode='USA')
+        context['tech'] = Share.objects.filter(sector='tech')
+        context['materials'] = Share.objects.filter(sector='materials')
+        context['share_rus_trends'] = self.get_trends(context['share_rus'])
         return context
+
+    def get_trends(self, shares):
+        positive = 0
+        negative = 0
+        for share_item in shares:
+            close_prices = ShareDataItem.objects.filter(share=share_item).values('close_price').order_by('-date')[:2]
+            current, previous = close_prices[0]['close_price'], close_prices[1]['close_price']
+            if (previous > current):
+                negative += 1
+            else:
+                positive += 1
+        return [positive, negative]
 
 
 class ShareDetailView(DetailView):
