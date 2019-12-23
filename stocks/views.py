@@ -15,6 +15,7 @@ class ShareListView(ListView):
         context['tech'] = Share.objects.filter(sector='tech')
         context['materials'] = Share.objects.filter(sector='materials')
         context['share_rus_trends'] = self.get_trends(context['share_rus'])
+        context['share_usa_trends'] = self.get_trends(context['share_usa'])
         return context
 
     def get_trends(self, shares):

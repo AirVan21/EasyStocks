@@ -145,8 +145,47 @@
       </div>
       <div class="row">
         <div class="col-xs-12 col-md-6">
-          {% block trendschart %}
-            <canvas id="doughnut-chart"></canvas>
+          {% block trends_chart_usa %}
+            <canvas id="doughnut-chart-usa"></canvas>
+            <script>
+              var data = {
+                  datasets: [{
+                      data: {{ share_usa_trends }},
+                      backgroundColor: [
+                        "#32CD32",
+                        "#FF4500",
+                      ],
+                  }],
+                  labels: [
+                      'Рост',
+                      'Падение'
+                  ]
+              };
+              var options = {
+                responsive: true,
+                legend: {
+                  position: 'top',
+                },
+                title: {
+                  display: true,
+                  text: 'Итоги недели акций 🇺🇸',
+                },
+                animation: {
+                  animateScale: true,
+                  animateRotate: true
+                }
+              }
+              var myDoughnutChart = new Chart(document.getElementById("doughnut-chart-usa"), {
+                  type: 'doughnut',
+                  data: data,
+                  options: options
+              });
+            </script>
+          {% endblock trends_chart_usa %}
+        </div>
+        <div class="col-xs-12 col-md-6">
+          {% block trends_chart_rus %}
+            <canvas id="doughnut-chart-rus"></canvas>
             <script>
               var data = {
                   datasets: [{
@@ -175,13 +214,13 @@
                   animateRotate: true
                 }
               }
-              var myDoughnutChart = new Chart(document.getElementById("doughnut-chart"), {
+              var myDoughnutChart = new Chart(document.getElementById("doughnut-chart-rus"), {
                   type: 'doughnut',
                   data: data,
                   options: options
               });
             </script>
-          {% endblock trendschart %}
+          {% endblock trends_chart_rus %}
         </div>
       </div>
     </div>
