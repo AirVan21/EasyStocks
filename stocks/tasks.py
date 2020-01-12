@@ -12,7 +12,7 @@ from shared.keys import ALPHA_DOWNLOAD_KEY, WORLD_TRADING_DATA_KEY, NEWS_API_KEY
 from stocks.models import Share, CurrencyInstrument, Article
 
 
-@task()
+@task
 def download_and_draw_share(share_name, mdp_folder, mdp_url, storage_path, img_path):
     storage_path = ''.join([storage_path, '/', mdp_folder])
     logger = download_and_draw_share.get_logger()
@@ -23,7 +23,6 @@ def download_and_draw_share(share_name, mdp_folder, mdp_url, storage_path, img_p
     manager = DataManager(csv_path)
     if mdp_folder == 'alphavantage':
         download_share_data_alpha(share_name, mdp_url, ALPHA_DOWNLOAD_KEY, storage_path)
-        manager.resample_daily_data_to_weekly(get_aggregator_alpha)
         generate_candle_image(csv_path, weeks_count, img_path)
         data_item_loader.load_update()
     elif mdp_folder == 'worldtradingdata':
@@ -37,7 +36,7 @@ def download_and_draw_share(share_name, mdp_folder, mdp_url, storage_path, img_p
         return
 
 
-@task()
+@task
 def download_and_draw_fx(base_ccy, ccy, mdp_url, storage_path, img_path):
     logger = download_and_draw_fx.get_logger()
     logger.info('Processing ' + base_ccy + '/' + ccy)
@@ -47,7 +46,7 @@ def download_and_draw_fx(base_ccy, ccy, mdp_url, storage_path, img_path):
     generate_fx_image(csv_path, days_count, img_path)
 
 
-@task()
+@task
 def download_data_task():
     root_path = os.path.abspath(os.path.dirname(__name__))
     storage_path = root_path + '/static/data'
@@ -65,7 +64,7 @@ def download_data_task():
     chain(share_tasks).apply_async()
 
 
-@task()
+@task
 def download_fx_data_task():
     root_path = os.path.abspath(os.path.dirname(__name__))
     storage_path = root_path + '/static/data'
@@ -84,7 +83,7 @@ def download_fx_data_task():
     chain(fx_tasks).apply_async()
 
 
-@task()
+@task
 def download_and_store_news(share_name, share_id):
     from_date, to_date = get_start_end_week_dates()
     logger = download_and_store_news.get_logger()
@@ -107,7 +106,7 @@ def download_and_store_news(share_name, share_id):
         db_article.save()
 
 
-@task()
+@task
 def download_news_task():
     news_tasks = [download_and_store_news.signature((share.title,
                                                      share.id),
