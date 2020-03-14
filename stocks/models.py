@@ -20,6 +20,7 @@ class Share(models.Model):
                                      on_delete=models.CASCADE,
                                      null=True,
                                      blank=True)
+    competitors = models.ManyToManyField('Share')
 
     def __str__(self):
         return self.title
