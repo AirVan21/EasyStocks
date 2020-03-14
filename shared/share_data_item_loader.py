@@ -36,7 +36,8 @@ class ShareDataItemLoader(object):
             self.load_csv(selected_share, csv_file)
         else:
             last_data_item = share_data_items.first()
-            csv_update = csv_file[csv_file['timestamp'] > last_data_item.date]
+            last_data_item_datetime = pd.to_datetime(last_data_item.date)
+            csv_update = csv_file[csv_file['timestamp'] > last_data_item_datetime]
             self.load_csv(selected_share, csv_update)
 
     def load_csv(self, selected_share, csv_frame):
