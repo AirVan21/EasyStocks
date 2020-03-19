@@ -40,4 +40,5 @@ class ShareDetailView(DetailView):
         context['news'] = Article.objects.filter(share=self.object).order_by('-publish_dateTime')
         context['chart_data'] = ShareDataItem.objects.filter(share=self.object).values('close_price', 'date', 'volume').order_by('-date')[:52]
         context['dates'] = list(map(lambda date: date['date'].strftime('%Y-%m-%d'), context['chart_data']))
+        context['competitors'] = self.object.competitors.all()
         return context
