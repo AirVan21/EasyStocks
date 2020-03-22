@@ -66,6 +66,25 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
 	outline: none;
 	outline-offset: none;
 }
+/* Navigation */
+#navigation {
+	padding: 5px;
+	position: fixed;
+	transition: top 0.8s;
+}
+#navigation.navbar-inverse {
+	background: #262626;
+	border-color: rgba(231, 231, 231, 0);
+}
+#navigation.navbar-inverse .navbar-nav > li > a {
+	text-transform: uppercase;
+	color: #fff;
+	font-weight: 400;
+	font-size: 15px;
+	border: 1px solid transparent;
+	letter-spacing: 0.5px;
+	margin: 0 15px 0 15px;
+}
 /* Header Section */
 .intro {
 	display: table;

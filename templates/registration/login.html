@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<body>
+  <div id="share_header">
+    <div class="container">
+      <div class="row">
+        <a href="{% url 'home' %}">
+          <div class="col-xs-12 col-md-3 item">
+            <img class="pull-left" src="{% get_static_prefix %}img/candlestick-logo.png"></img>
+            <h3 class="pull-left">EasyStocks</h3>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="text-center">
+    <h2>Log in</h2>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Log in</button>
+    </form>
+  </div>
+</body>
+{% endblock content %}
