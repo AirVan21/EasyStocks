@@ -83,11 +83,11 @@
         },
         "chart-studio": {
             "hashes": [
-                "sha256:1293776553a552bb3ff918c33d70f3b0794103b8cb0ac08aad8bde1c94ee65e3",
-                "sha256:7dcd66ccdba81ca54025cfcb76e0e68ed9922f474adc45848542f186567f60da"
+                "sha256:a17283b62470306d77060b200f13f9749c807dd15613c113d36f8d057f5c7019",
+                "sha256:fd183185d6e6d31c642567145c1a862f941ca9c7695aac8b2f3ebbcbcea31a7a"
             ],
             "index": "pypi",
-            "version": "==1.0.0"
+            "version": "==1.1.0"
         },
         "decorator": {
             "hashes": [
@@ -289,10 +289,10 @@
         },
         "nbformat": {
             "hashes": [
-                "sha256:562de41fc7f4f481b79ab5d683279bf3a168858268d4387b489b7b02be0b324a",
-                "sha256:f4bbbd8089bd346488f00af4ce2efb7f8310a74b2058040d075895429924678c"
+                "sha256:65a79936a128fd85aef392b7fea520166364037118b6fe3ed52de742d06c4558",
+                "sha256:f0c47cf93c505cb943e2f131ef32b8ae869292b5f9f279db2bafb35867923f69"
             ],
-            "version": "==5.0.4"
+            "version": "==5.0.5"
         },
         "notebook": {
             "hashes": [
@@ -379,11 +379,11 @@
         },
         "plotly": {
             "hashes": [
-                "sha256:b6b1e13e7f04dc9a9f714ab8ecc63d00a4207a736c9835912c96b6884002be1e",
-                "sha256:e6eab2b6010921f5fb998860125b90748e581de66ebc6107b686829417d98fc4"
+                "sha256:61f34955f04201a1ebcd59feaafa7eae7c16ef9b3f439870be01fb85a949292f",
+                "sha256:ac0ca0854350bfcd833f3a8eb08aa50e184660502bb46fe907701f896ff349bd"
             ],
             "index": "pypi",
-            "version": "==4.5.4"
+            "version": "==4.6.0"
         },
         "prometheus-client": {
             "hashes": [
