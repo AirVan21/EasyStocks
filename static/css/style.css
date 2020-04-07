@@ -74,7 +74,7 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
 }
 #navigation.navbar-inverse {
 	background: #262626;
-	border-color: rgba(231, 231, 231, 0);
+	border-color: #262626;
 }
 #navigation.navbar-inverse .navbar-nav > li > a {
 	text-transform: uppercase;
@@ -91,7 +91,6 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
 	width: 100%;
 	padding: 0;
 	background: url(../img/fin-small.jpg) center center no-repeat;
-	background-color: #e5e5e5;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	background-size: cover;
