@@ -6,8 +6,12 @@
         responsiveClass:true,
         responsive:{
             0:{
-                items:2,
+                items:1,
                 nav:false
+            },
+            750:{
+              items:2,
+               nav:false,
             },
             970:{
                 items:3,
