@@ -2,23 +2,34 @@
 {% load static %}
 {% block content %}
 <body>
-  <nav id="navigation-share" class="navbar navbar-default">
-    <div class="container">
-      <div class="collapse navbar-collapse" id="logo-header">
-        <ul class="nav navbar-nav margin-left">
+  <nav id="navigation" class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#share_detail-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" id="share_detail-collapse">
+        <ul class="nav navbar-nav navbar-left">
+          <a class="navbar-brand" href="{% url 'home' %}">EasyStocks</a>
+        </ul>
+        <ul class="nav navbar-nav navbar-center">
           <li>
-            <a href="{% url 'home' %}"> <img src="{% get_static_prefix %}img/candlestick-logo.png"></img> </a>
+            <a href="{% url 'login' %}">Логин</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
   <div class="text-center">
-    <h2>Log in</h2>
+    <h2>Логин</h2>
     <form method="post">
       {% csrf_token %}
       {{ form.as_p }}
-      <button type="submit">Log in</button>
+      <button type="submit">Логин</button>
     </form>
   </div>
 </body>
