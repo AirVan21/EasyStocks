@@ -42,7 +42,7 @@
 <body>
   <!-- Navigation -->
   <nav id="navigation" class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
+    <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#home-collapse">
@@ -54,6 +54,9 @@
       </div>
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="home-collapse">
+        <ul class="nav navbar-nav navbar-left">
+          <a class="navbar-brand" href="{% url 'home' %}">EasyStocks</a>
+        </ul>
         {% if not user.is_authenticated %}
         <ul class="nav navbar-nav navbar-right">
           <li>
@@ -93,7 +96,7 @@
   <div id="about">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-xs-12 col-sm-6 col-md-6">
+        <div class="col-xs-12 col-md-6">
           <div class="about-text">
             <h3 class="text-center">Сервис для инвесторов</h3>
             <p class="text-center">Поможем сформировать инвестиционный портфель <br> Напомним про важные события на фондовом и валютном рынке </p>
@@ -103,7 +106,10 @@
           <div class="about-text">
             <h3 class="text-center">Статистика</h3>
             {% block statistics %}
-              <p class="text-center">Количество акций: {{ share_list|length }} <br> Количество валютных пар: {{ currency_list|length }}
+              <p class="text-center">
+                Количество акций: {{ share_list|length }} <br> 
+                Количество валютных пар: {{ currency_list|length }} <br>
+                Количество новостей: {{ news_list|length }}
               </p>
             {% endblock statistics %}
           </div>
@@ -268,6 +274,7 @@
   </div>
 </body>
 <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="{% static 'js/owl.carousel.min.js' %}"></script>
 <script src="{% static 'js/custom.js' %}"></script>
 </html>

@@ -85,6 +85,16 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
 	letter-spacing: 0.5px;
 	margin: 0 15px 0 15px;
 }
+@media (min-width: 768px) {
+	.navbar-nav.navbar-center {
+	  position: absolute;
+	  left: 50%;
+	  transform: translatex(-50%);
+	}
+}
+canvas {
+	margin: 45px 0 0 0;
+}
 /* Header Section */
 .intro {
 	display: table;
@@ -123,16 +133,16 @@ header .intro-text {
 }
 /* About Section */
 #about {
-	padding: 15px;
+	padding: 10px;
 	background: #f6f6f6;
 }
 #about .about-text {
-	padding: 25px 0;
+	padding: 10px 0;
 }
 #about p {
 	line-height: 26px;
 	font-size: 16px;
-	margin: 15px 0 15px;
+	margin: 10px 0 10px;
 }
 /* Stocks section */
 #stocks .chart {
