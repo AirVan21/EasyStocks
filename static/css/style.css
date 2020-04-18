@@ -93,7 +93,7 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
 	}
 }
 canvas {
-	margin: 45px 0 0 0;
+	margin: 65px 0 0 0;
 }
 /* Header Section */
 .intro {
@@ -170,6 +170,9 @@ header .intro-text {
 }
 #news a {
 	color: #262626
+}
+#company .item {
+	margin: 20px 0 20px;
 }
 /* Footer Section*/
 #footer {

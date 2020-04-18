@@ -16,10 +16,12 @@ class Share(models.Model):
     text = models.TextField()
     countryCode = models.CharField(max_length=3)
     sector = models.CharField(max_length=30)
-    dataProvider = models.ForeignKey('MarketDataProvider',
-                                     on_delete=models.CASCADE,
-                                     null=True,
-                                     blank=True)
+    dataProvider = models.ForeignKey(
+        'MarketDataProvider',
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
+    )
     competitors = models.ManyToManyField('Share')
 
     def __str__(self):
@@ -27,10 +29,12 @@ class Share(models.Model):
 
 
 class ShareDataItem(models.Model):
-    share = models.ForeignKey('Share',
-                              on_delete=models.CASCADE,
-                              null=True,
-                              blank=True)
+    share = models.ForeignKey(
+        'Share',
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
+    )
     date = models.DateField()
     open_price = models.FloatField()
     high_price = models.FloatField()
@@ -58,9 +62,11 @@ class Article(models.Model):
     url_to_image = models.URLField(blank=True)
     content = models.TextField(blank=True)
     publish_dateTime = models.DateTimeField(blank=True)
-    share = models.ForeignKey('Share',
-                              on_delete=models.CASCADE,
-                              null=True)
+    share = models.ForeignKey(
+        'Share',
+        on_delete=models.CASCADE,
+        null=True
+    )
 
     def __str__(self):
         return self.title
