@@ -1,5 +1,13 @@
 from django.views.generic import ListView, DetailView
-from .models import Share, CurrencyInstrument, Article, ShareDataItem
+from datetime import datetime
+from .models import (
+    Share,
+    CurrencyInstrument,
+    Article,
+    ShareDataItem,
+    Product,
+    Customer
+)
 
 
 class ShareListView(ListView):
@@ -39,7 +47,36 @@ class ShareDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(ShareDetailView, self).get_context_data(**kwargs)
         context['news'] = Article.objects.filter(share=self.object).order_by('-publish_dateTime')
-        context['chart_data'] = ShareDataItem.objects.filter(share=self.object).values('close_price', 'date', 'volume').order_by('-date')[:52]
-        context['dates'] = list(map(lambda date: date['date'].strftime('%Y-%m-%d'), context['chart_data']))
         context['competitors'] = self.object.competitors.all()
+        context['chart_data'] = ShareDataItem.objects.filter(share=self.object).values('close_price', 'date', 'volume').order_by('-date')[:52]
+        context['dates'] = list(
+            map(
+                lambda date: date['date'].strftime('%Y-%m-%d'),
+                context['chart_data']
+            )
+        )
+        context['products_values'] = list(
+            map(
+                lambda item: item['revenue'],
+                Product.objects.filter(share=self.object).filter(date__year='2019').values('revenue').order_by('revenue')
+            )
+        )
+        context['products_names'] = list(
+            map(
+                lambda item: item['name'],
+                Product.objects.filter(share=self.object).filter(date__year='2019').values('name').order_by('revenue')
+            )
+        )
+        context['customer_percentage'] = list(
+            map(
+                lambda item: item['percentage'],
+                Customer.objects.filter(share=self.object).filter(date__year='2019').values('percentage').order_by('percentage')
+            )
+        )
+        context['customer_locations'] = list(
+            map(
+                lambda item: item['location'],
+                Customer.objects.filter(share=self.object).filter(date__year='2019').values('location').order_by('percentage')
+            )
+        )
         return context

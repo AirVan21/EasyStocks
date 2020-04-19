@@ -130,7 +130,7 @@ def download_and_store_news(share_name, share_id):
     from_date, to_date = get_start_end_week_dates()
     logger = download_and_store_news.get_logger()
     logger.info('Downloading news for ' + share_name)
-    articles = download_news_json(
+    articles_en = download_news_json(
         get_news_api_payload(
             share_name,
             NEWS_API_KEY,
@@ -138,8 +138,18 @@ def download_and_store_news(share_name, share_id):
             to_date
         )
     )
-    # Take every 3rd article
-    for article in articles[:45:3]:
+    articles_ru = download_news_json(
+        get_news_api_payload(
+            share_name,
+            NEWS_API_KEY,
+            from_date,
+            to_date,
+            'ru'
+        )
+    )
+    articles = articles_ru + articles_en
+    # Take every 2nd article
+    for article in articles[:50:2]:
         if not Article.are_valid_arguments(article):
             continue
         db_article = Article(

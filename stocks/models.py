@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.timezone import now
 
 
 class MarketDataProvider(models.Model):
@@ -91,3 +92,55 @@ class Article(models.Model):
     def get_source_name(article_dict):
         source = article_dict['source']
         return source['name']
+
+
+class Dividend(models.Model):
+    amount = models.FloatField()
+    date = models.DateField(default=now)
+    share = models.ForeignKey(
+        'Share',
+        on_delete=models.CASCADE,
+        null=True
+    )
+
+    def __str__(self):
+        return self.date
+
+
+class Product(models.Model):
+    name = models.CharField(max_length=200, blank=True)
+    revenue = models.IntegerField()
+    date = models.DateField(default=now)
+    share = models.ForeignKey(
+        'Share',
+        on_delete=models.CASCADE,
+        null=True
+    )
+
+    def __str__(self):
+        return self.name
+
+
+class Indicators(models.Model):
+    revenue = models.IntegerField()
+    earnings = models.IntegerField()
+    date = models.DateField(default=now)
+    share = models.ForeignKey(
+        'Share',
+        on_delete=models.CASCADE,
+        null=True
+    )
+
+
+class Customer(models.Model):
+    location = models.CharField(max_length=200, blank=True)
+    percentage = models.IntegerField()
+    date = models.DateField(default=now)
+    share = models.ForeignKey(
+        'Share',
+        on_delete=models.CASCADE,
+        null=True
+    )
+
+    def __str__(self):
+        return self.location

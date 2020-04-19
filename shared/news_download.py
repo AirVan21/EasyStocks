@@ -4,13 +4,14 @@ import json
 from datetime import date, timedelta
 
 
-def get_news_api_payload(query, apikey, from_date, to_date):
+def get_news_api_payload(query, apikey, from_date, to_date, language='en'):
     args = {
-        'q'      : query,
-        'sortBy' : 'popularity',
-        'from'   : from_date,
-        'to'     : to_date,
-        'apiKey' : apikey
+        'q': query,
+        'sortBy': 'popularity',
+        'from': from_date,
+        'to': to_date,
+        'language': language,
+        'apiKey': apikey
     }
     return args
 
@@ -42,10 +43,12 @@ if __name__ == "__main__":
     parser.add_argument('print', metavar='print', type=bool, nargs='?', help='should print result')
     args = parser.parse_args()
     from_date, to_date = get_start_end_week_dates()
-    articles = download_news_json(get_news_api_payload(args.query,
-                                                       args.apikey,
-                                                       from_date,
-                                                       to_date))
+    articles = download_news_json(get_news_api_payload(
+        args.query,
+        args.apikey,
+        from_date,
+        to_date)
+    )
     if args.print:
         for article in articles:
             print('\n', article['title'])
