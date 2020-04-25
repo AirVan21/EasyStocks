@@ -106,80 +106,123 @@
       </div>
     </div>
   </div>
-  <div id="company" class="container" >
+  <div id="company">
     <div class="container">
       <div class="text-center">
         <h2>Структура</h2>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12 col-md-6">
-        {% block products_details %}
-          <canvas id="doughnut-chart-products"></canvas>
-          <script>
-            var data = {
-                datasets: [{
-                    data: {{ products_values }},
-                    backgroundColor: poolColors({{ products_values | length }}),
-                }],
-                  labels: {{ products_names | safe }},
-            };
-            var options = {
-              responsive: true,
-              legend: {
-                display: false,
-                position: 'top',
-              },
-              title: {
-                display: true,
-                text: 'Продукция (прибыль в миллионах {{ currency_symbol }})',
-              },
-              animation: {
-                animateScale: true,
-                animateRotate: true
+      <div class="row">
+        <div class="col-xs-12 col-md-6">
+          {% block products_details %}
+            <canvas id="doughnut-chart-products"></canvas>
+            <script>
+              var data = {
+                  datasets: [{
+                      data: {{ products_values }},
+                      backgroundColor: poolColors({{ products_values | length }}),
+                  }],
+                    labels: {{ products_names | safe }},
+              };
+              var options = {
+                responsive: true,
+                legend: {
+                  display: false,
+                  position: 'top',
+                },
+                title: {
+                  display: true,
+                  text: 'Продукция (прибыль в миллионах {{ currency_symbol }})',
+                },
+                animation: {
+                  animateScale: true,
+                  animateRotate: true
+                }
               }
-            }
-            var myDoughnutChart = new Chart(document.getElementById("doughnut-chart-products"), {
-                type: 'doughnut',
-                data: data,
-                options: options
-            });
-          </script>
-        {% endblock products_details %}
+              var myDoughnutChart = new Chart(document.getElementById("doughnut-chart-products"), {
+                  type: 'doughnut',
+                  data: data,
+                  options: options
+              });
+            </script>
+          {% endblock products_details %}
+        </div>
+        <div class="col-xs-12 col-md-6">
+          {% block customer_details %}
+            <canvas id="pie-chart-cutomers"></canvas>
+            <script>
+              var data = {
+                  datasets: [{
+                      data: {{ customer_percentage }},
+                      backgroundColor: poolColors({{ customer_percentage | length }}),
+                  }],
+                    labels: {{ customer_locations | safe }},
+              };
+              var options = {
+                responsive: true,
+                legend: {
+                  display: false,
+                  position: 'top',
+                },
+                title: {
+                  display: true,
+                  text: 'Покупатели (местоположение)',
+                },
+                animation: {
+                  animateScale: true,
+                  animateRotate: true
+                }
+              }
+              var myDoughnutChart = new Chart(document.getElementById("pie-chart-cutomers"), {
+                  type: 'pie',
+                  data: data,
+                  options: options
+              });
+            </script>
+          {% endblock customer_details %}
+        </div>
       </div>
-      <div class="col-xs-12 col-md-6">
-        {% block customer_details %}
-          <canvas id="pie-chart-cutomers"></canvas>
-          <script>
-            var data = {
-                datasets: [{
-                    data: {{ customer_percentage }},
-                    backgroundColor: poolColors({{ customer_percentage | length }}),
-                }],
-                  labels: {{ customer_locations | safe }},
-            };
-            var options = {
-              responsive: true,
-              legend: {
-                display: false,
-                position: 'top',
-              },
-              title: {
-                display: true,
-                text: 'Покупатели (местоположение)',
-              },
-              animation: {
-                animateScale: true,
-                animateRotate: true
-              }
-            }
-            var myDoughnutChart = new Chart(document.getElementById("pie-chart-cutomers"), {
-                type: 'pie',
-                data: data,
-                options: options
-            });
-          </script>
-        {% endblock customer_details %}
+      <div class="row">
+        <div class="col-xs-12">
+          {% block company_earnings %}
+            <canvas id="bar-chart-income"></canvas>
+              <script>
+                var data = {
+                  datasets: [
+                    {
+                      data: {{ earnings }},
+                      label: 'Прибыль',
+                      backgroundColor: "#5FD3B3",
+                    },
+                    {
+                      data: {{ revenue }},
+                      label: 'Выручка',
+                      backgroundColor: "#006D4F",
+                    }
+                  ],
+                  labels: {{ indicators_years | safe }}
+                }
+                var options = {
+                  responsive: true,
+                  legend: {
+                    display: true,
+                    position: 'top',
+                  },
+                  title: {
+                    display: false,
+                    text: 'Выручка/Прибыль',
+                  },
+                  animation: {
+                    animateScale: true,
+                    animateRotate: true
+                  }
+                }
+                var myDoughnutChart = new Chart(document.getElementById("bar-chart-income"), {
+                    type: 'bar',
+                    data: data,
+                    options: options
+                });
+              </script>
+          {% endblock company_earnings %}
       </div>
     </div>
   </div>

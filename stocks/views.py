@@ -1,5 +1,4 @@
 from django.views.generic import ListView, DetailView
-from datetime import datetime
 from .models import (
     Share,
     CurrencyInstrument,
@@ -7,7 +6,8 @@ from .models import (
     ShareDataItem,
     Product,
     Customer,
-    Currency
+    Currency,
+    Indicators
 )
 
 
@@ -78,6 +78,25 @@ class ShareDetailView(DetailView):
             map(
                 lambda item: item['location'],
                 Customer.objects.filter(share=self.object).filter(date__year='2019').values('location').order_by('percentage')
+            )
+        )
+        indicators = Indicators.objects.filter(share=self.object).values('revenue', 'earnings', 'date__year').order_by('date')
+        context['revenue'] = list(
+            map(
+                lambda item: item['revenue'],
+                indicators
+            )
+        )
+        context['earnings'] = list(
+            map(
+                lambda item: item['earnings'],
+                indicators
+            )
+        )
+        context['indicators_years'] = list(
+            map(
+                lambda item: item['date__year'],
+                indicators
             )
         )
         context['currency_symbol'] = self.get_currency().symbol
