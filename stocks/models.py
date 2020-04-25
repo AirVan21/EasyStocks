@@ -23,6 +23,12 @@ class Share(models.Model):
         null=True,
         blank=True
     )
+    currency = models.ForeignKey(
+        'Currency',
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
+    )
     competitors = models.ManyToManyField('Share')
 
     def __str__(self):
@@ -144,3 +150,11 @@ class Customer(models.Model):
 
     def __str__(self):
         return self.location
+
+
+class Currency(models.Model):
+    name = models.CharField(max_length=200, blank=True)
+    symbol = models.CharField(max_length=10, blank=True)
+
+    def __str__(self):
+        return self.name

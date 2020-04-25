@@ -87,6 +87,7 @@
           <ul class="nav nav-tabs">
             <li role="presentation" class="active"><a data-toggle="tab" href="#competitors">Конкуренты</a></li>
             <li role="presentation"><a data-toggle="tab" href="#dividends">Дивиденды</a></li>
+            <li role="presentation"><a data-toggle="tab" href="#reports">Отчетность</a></li>
           </ul>
           <div class="tab-content">
             <div class="tab-pane text-center active" id="competitors">
@@ -98,8 +99,8 @@
                 {% endfor %}
               {% endblock competitors %}
             </div>
-            <div class="tab-pane text-center" id="dividends">
-            </div>
+            <div class="tab-pane text-center" id="dividends"></div>
+            <div class="tab-pane text-center" id="reports"></div>
           </div>
         </div>
       </div>
@@ -131,7 +132,7 @@
               },
               title: {
                 display: true,
-                text: 'Продукция (прибыль в миллионах)',
+                text: 'Продукция (прибыль в миллионах {{ currency_symbol }})',
               },
               animation: {
                 animateScale: true,

@@ -51,6 +51,8 @@ def download_and_draw_share(share_name, mdp_folder, mdp_url, storage_path, img_p
         generate_candle_image(csv_path, weeks_count, img_path)
         data_item_loader.load_update()
     elif mdp_folder == 'worldtradingdata':
+        return
+        # Don't use worldtradingdata service
         download_share_data_wtd(
             share_name,
             mdp_url,

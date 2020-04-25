@@ -70,7 +70,7 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
 #navigation {
 	padding: 5px;
 	position: fixed;
-	transition: top 0.8s;
+	transition: top 0.5s;
 }
 #navigation.navbar-inverse {
 	background: #262626;
@@ -172,6 +172,13 @@ header .intro-text {
 	color: #262626
 }
 #company .item {
+	margin: 20px 0 20px;
+}
+/* Login page*/
+#login-form {
+	letter-spacing: 0.5px;
+	line-height: 26px;
+	font-size: 16px;
 	margin: 20px 0 20px;
 }
 /* Footer Section*/

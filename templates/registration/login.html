@@ -26,11 +26,13 @@
   </nav>
   <div class="text-center">
     <h2>Логин</h2>
-    <form method="post">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit">Логин</button>
-    </form>
+    <div class="container-fluid">
+      <form method="post" id="login-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Логин</button>
+      </form>
+    </div>
   </div>
 </body>
 {% endblock content %}

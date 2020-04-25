@@ -8,7 +8,8 @@ from .models import (
     Dividend,
     Product,
     Indicators,
-    Customer
+    Customer,
+    Currency
 )
 
 
@@ -21,3 +22,4 @@ admin.site.register(Dividend)
 admin.site.register(Product)
 admin.site.register(Indicators)
 admin.site.register(Customer)
+admin.site.register(Currency)

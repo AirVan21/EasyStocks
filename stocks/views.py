@@ -6,7 +6,8 @@ from .models import (
     Article,
     ShareDataItem,
     Product,
-    Customer
+    Customer,
+    Currency
 )
 
 
@@ -79,4 +80,8 @@ class ShareDetailView(DetailView):
                 Customer.objects.filter(share=self.object).filter(date__year='2019').values('location').order_by('percentage')
             )
         )
+        context['currency_symbol'] = self.get_currency().symbol
         return context
+
+    def get_currency(self):
+        return Currency.objects.get(id=self.object.currency.id)
