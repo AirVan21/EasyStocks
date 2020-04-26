@@ -87,9 +87,9 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
 }
 @media (min-width: 768px) {
 	.navbar-nav.navbar-center {
-	  position: absolute;
-	  left: 50%;
-	  transform: translatex(-50%);
+	    position: absolute;
+	    left: 50%;
+	    transform: translatex(-50%);
 	}
 }
 canvas {
@@ -180,6 +180,14 @@ header .intro-text {
 	line-height: 26px;
 	font-size: 16px;
 	margin: 20px 0 20px;
+}
+/* Signup page*/
+#signup-form {
+	letter-spacing: 0.5px;
+	line-height: 26px;
+	font-size: 16px;
+	margin: 20px 20px 20px;
+	text-align: left;
 }
 /* Footer Section*/
 #footer {
