@@ -29,10 +29,17 @@ function dynamicColors() {
   return "rgba(" + r + "," + g + "," + b + ", 0.5)";
 }
 
-function poolColors(arr) {
-  var pool = [];
-  for(i = 0; i < arr; i++) {
+function poolColors(array_size) {
+  // set default colors
+  var pool = [
+    "rgba(7,83,118, 0.5)",
+    "rgba(104,87,121, 0.5)",
+    "rgba(138,235,165, 0.5)",
+    "rgba(200,166,140, 0.5)",
+    "rgba(164,238,254, 0.5)",
+  ];
+  for(i = pool.length; i < array_size; i++) {
       pool.push(dynamicColors());
   }
-  return pool;
+  return pool.slice(0, array_size)
 }
