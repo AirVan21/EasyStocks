@@ -18,14 +18,22 @@
         </ul>
         <ul class="nav navbar-nav navbar-center">
           <li>
-            {% block share_name %}
-              <a href="{% url 'share_detail' share.pk %}">{{ share.title }}</a>
-            {% endblock share_name %}
+            <a href="#company">Показатели</a>
+          </li>
+          <li>
+            <a href="#news">Новости</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
+  <div class="text-center" id="share-name">
+    <div class="container">
+      {% block share_name %}
+        <h2>{{ share.title }}</h2>
+      {% endblock share_name %}
+    </div>
+  </div>
   <div class="text-center">
     <div class="container">
       <div class="row">

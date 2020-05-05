@@ -3,3 +3,8 @@
 
 # Storage related
 .DS_Store
+*.rdb
+
+# Other
+*.pid
+celerybeat-schedule

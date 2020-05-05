@@ -92,8 +92,8 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
 	    transform: translatex(-50%);
 	}
 }
-canvas {
-	margin: 65px 0 0 0;
+#share-name {
+	margin: 60px 0 0 0;
 }
 /* Header Section */
 .intro {
