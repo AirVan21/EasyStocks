@@ -33,6 +33,6 @@ urlpatterns = [
             content_type='text/plain')
         ),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('accounts/', include('accounts.urls')),
+    path('', include('accounts.urls')),
     path('', include('stocks.urls')),
 ]

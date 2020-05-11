@@ -95,6 +95,9 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
 #share-name {
 	margin: 60px 0 0 0;
 }
+#user-name {
+	margin: 60px 0 0 0;
+}
 /* Header Section */
 .intro {
 	display: table;
