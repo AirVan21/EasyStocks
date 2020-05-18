@@ -157,6 +157,9 @@ header .intro-text {
 	transition: 0.3s;
 	margin: 15px 0 15px;
 }
+#dividends .item {
+	margin: 20px 0 20px;
+}
 /* News section */
 #news .item {
 	margin: 20px 0 20px;

@@ -108,9 +108,15 @@ class Dividend(models.Model):
         on_delete=models.CASCADE,
         null=True
     )
+    currency = models.ForeignKey(
+        'Currency',
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
+    )
 
     def __str__(self):
-        return self.date
+        return self.share.__str__()
 
 
 class Product(models.Model):
@@ -137,6 +143,9 @@ class Indicators(models.Model):
         null=True
     )
 
+    def __str__(self):
+        return self.share.__str__()
+
 
 class Customer(models.Model):
     location = models.CharField(max_length=200, blank=True)
@@ -149,7 +158,7 @@ class Customer(models.Model):
     )
 
     def __str__(self):
-        return self.location
+        return self.share.__str__() + ' ' + self.location
 
 
 class Currency(models.Model):

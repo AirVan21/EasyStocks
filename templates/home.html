@@ -162,6 +162,24 @@
         {% endblock content_rus %}
     </div>
   </div>
+  <div id="dividends" class="text-center">
+    <div class="container">
+      <div class="section-title">
+        <h2>Дивиденды</h2>
+      </div>
+      <div class="row">
+        <div class="owl-carousel owl-theme">
+        {% for dividend in dividends %}
+          <div class="item">
+            <h3 class="text-center">{{ dividend.share }}</h3>
+            <h4>{{ dividend.amount }}</h4>
+            <h5>{{ dividend.date }}</h5>
+          </div>
+        {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
   <!-- FX -->
   <div id="fx" class="text-center">
     <div class="container">
@@ -180,6 +198,7 @@
       </div>
     </div>
   </div>
+  <!-- Overall -->
   <div id="overall" class="text-center">
     <div class="container">
       <div class="section-title">
