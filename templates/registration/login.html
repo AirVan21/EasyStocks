@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 <body>
-  <nav id="navigation" class="navbar navbar-inverse navbar-fixed-top">
+  <nav id="navigation" class="navbar navbar-inverse navbar-static-top">
     <div class="container-fluid">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#share_detail-collapse">
@@ -15,11 +15,6 @@
       <div class="collapse navbar-collapse" id="share_detail-collapse">
         <ul class="nav navbar-nav navbar-left">
           <a class="navbar-brand" href="{% url 'home' %}">EasyStocks</a>
-        </ul>
-        <ul class="nav navbar-nav navbar-center">
-          <li>
-            <a href="{% url 'login' %}">Логин</a>
-          </li>
         </ul>
       </div>
     </div>
