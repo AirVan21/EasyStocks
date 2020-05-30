@@ -1,6 +1,6 @@
 (function ($) {
   "use strict";
-    $('.owl-carousel').owlCarousel({
+    $('#currency-carousel').owlCarousel({
         loop:true,
         margin:20,
         responsiveClass:true,
@@ -16,6 +16,30 @@
             970:{
                 items:3,
                 nav:false
+            }
+        }
+    });
+
+})(jQuery);
+
+(function ($) {
+  "use strict";
+    $('#div-carousel').owlCarousel({
+        loop:true,
+        margin:20,
+        responsiveClass:true,
+        responsive:{
+            0:{
+                items:2,
+                nav:true
+            },
+            750:{
+              items:3,
+              nav:true,
+            },
+            970:{
+                items:5,
+                nav:true
             }
         }
     });

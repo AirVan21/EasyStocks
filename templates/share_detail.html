@@ -120,7 +120,7 @@
         <h2>Показатели</h2>
       </div>
       <div class="row">
-        <div class="col-xs-12 col-md-6">
+        <div class="col-xs-12 col-sm-6 col-md-6">
           {% block products_details %}
             <canvas id="doughnut-chart-products"></canvas>
             <script>
@@ -154,7 +154,7 @@
             </script>
           {% endblock products_details %}
         </div>
-        <div class="col-xs-12 col-md-6">
+        <div class="col-xs-12 col-sm-6 col-md-6">
           {% block customer_details %}
             <canvas id="pie-chart-cutomers"></canvas>
             <script>
@@ -243,7 +243,7 @@
         <div class="row">
           {% for article in news|slice:":3" %}
             <a href="{{ article.url }}">
-              <div class="col-xs-12 col-md-4 item">
+              <div class="col-xs-12 col-sm-6 col-md-4 item">
                 <h3 class="text-center">{{ article.title }}</h3>
                 <img src="{{ article.url_to_image }}" class="img-responsive center-block">
                 <br/>
@@ -255,7 +255,7 @@
         <div class="row">
           {% for article in news|slice:"3:6" %}
             <a href="{{ article.url }}">
-              <div class="col-xs-12 col-md-4 item">
+              <div class="col-xs-12 col-sm-6 col-md-4 item">
                 <h3 class="text-center">{{ article.title }}</h3>
                 <img src="{{ article.url_to_image }}" class="img-responsive center-block">
                 <br/>
@@ -270,7 +270,7 @@
   <div id="footer">
     <div class="container text-center">
       <div class="col-xs-12">
-        <p>&copy; 2019 EasyStocks (airvan21)</p>
+        <p>&copy; 2020 EasyStocks (<a href="https://github.com/airvan21">airvan21</a>)</p>
         <p>News provider <a href="https://newsapi.org/">News API</a>
       </div>
     </div>

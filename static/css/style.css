@@ -11,24 +11,13 @@ h1, h2, h3, h4 {
 	font-family: 'Roboto', sans-serif;
 }
 h2 {
-	font-weight: 280;
+	font-weight: 300;
 	font-size: 28px;
 	color: #333;
 	position: relative;
-	margin-top: 15px;
-	margin-bottom: 15px;
+	margin-top: 30px;
+	margin-bottom: 10px;
 	padding-bottom: 10px;
-}
-h2::after {
-	position: absolute;
-	content: "";
-	background: #d43031;
-	height: 2px;
-
-	width: 100px;
-	bottom: 0;
-	margin-left: -50px;
-	left: 50%;
 }
 h3 {
 	font-size: 22px;

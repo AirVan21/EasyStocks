@@ -27,7 +27,7 @@ class ShareListView(ListView):
         context['materials'] = Share.objects.filter(sector='materials')
         context['share_rus_trends'] = self.get_trends(context['share_rus'])
         context['share_usa_trends'] = self.get_trends(context['share_usa'])
-        context['dividends'] = Dividend.objects.all()
+        context['dividends'] = Dividend.objects.all().order_by('-date')
         return context
 
     def get_trends(self, shares):
