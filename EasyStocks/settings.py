@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
+    # 3rd Party
+    'crispy_forms',
+    # Local
     'stocks.apps.StocksConfig',
     'accounts.apps.AccountsConfig'
 ]
@@ -153,3 +156,5 @@ CELERY_BEAT_SCHEDULE = {
 # Redirect settings
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'

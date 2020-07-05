@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 {% block content %}
 <body>
   <nav id="navigation" class="navbar navbar-inverse navbar-static-top">
@@ -24,8 +25,8 @@
       <h2>Регистрация</h2>
       <form method="post" id="signup-form">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Регистрация</button>
+        {{ form|crispy }}
+        <button class="btn btn-success ml-2" type="submit">Регистрация</button>
       </form>
     </div>
   </div>
