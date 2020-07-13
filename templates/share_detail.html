@@ -256,6 +256,11 @@
           {% for article in news|slice:":3" %}
             <a href="{{ article.url }}">
               <div class="col-xs-12 col-sm-6 col-md-4 item">
+                {% if user.is_staff %}
+                  <button type="button" class="close" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                {% endif %}
                 <h3 class="text-center">{{ article.title }}</h3>
                 <img src="{{ article.url_to_image }}" class="img-responsive center-block">
                 <br/>
@@ -268,6 +273,11 @@
           {% for article in news|slice:"3:6" %}
             <a href="{{ article.url }}">
               <div class="col-xs-12 col-sm-6 col-md-4 item">
+                {% if user.is_staff %}
+                  <button type="button" class="close" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                {% endif %}
                 <h3 class="text-center">{{ article.title }}</h3>
                 <img src="{{ article.url_to_image }}" class="img-responsive center-block">
                 <br/>
