@@ -112,7 +112,6 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
 	margin-top: 0px;
 }
 header .intro-text {
-	padding-top: 150px;
 	padding-bottom: 50px;
 	text-align: center;
 }
@@ -162,7 +161,8 @@ header .intro-text {
 	color: #262626;
 }
 #news a {
-	color: #262626
+	color: #262626;
+	text-decoration: none;
 }
 #company .item {
 	margin: 20px 0 20px;

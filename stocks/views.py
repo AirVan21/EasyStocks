@@ -1,3 +1,4 @@
+from django.shortcuts import get_list_or_404, redirect
 from django.views.generic import ListView, DetailView
 from .models import (
     Share,
@@ -106,3 +107,10 @@ class ShareDetailView(DetailView):
 
     def get_currency(self):
         return Currency.objects.get(id=self.object.currency.id)
+
+    @staticmethod
+    def delete_article(request, share_id, article_id):
+        if request.method == 'POST':
+            print('article_id =', article_id, 'share_id = ', share_id)
+            return redirect('/')
+
