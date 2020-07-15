@@ -256,9 +256,12 @@
           {% for article in news|slice:":3" %}
               <div class="col-xs-12 col-sm-6 col-md-4">
                 {% if user.is_staff %}
-                  <button type="button" class="close" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
+                  <form action="{% url 'delete_article' share.id article.id %}" method="post" id="remove-article">
+                    {% csrf_token %}
+                    <button type="submit" class="close" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </form>
                 {% endif %}
                 <a href="{{ article.url }}">
                   <div class="item">

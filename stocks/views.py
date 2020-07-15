@@ -112,5 +112,5 @@ class ShareDetailView(DetailView):
     def delete_article(request, share_id, article_id):
         if request.method == 'POST':
             print('article_id =', article_id, 'share_id = ', share_id)
-            return redirect('/')
+            return redirect(''.join(['/share/', str(share_id)]))
 
