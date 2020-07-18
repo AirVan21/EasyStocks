@@ -112,6 +112,7 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
 	margin-top: 0px;
 }
 header .intro-text {
+	padding-top: 150px;
 	padding-bottom: 50px;
 	text-align: center;
 }
