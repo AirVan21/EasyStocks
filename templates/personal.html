@@ -24,18 +24,34 @@
       </div>
     </div>
   </nav>
-  <div class="text-center" id="user-name">
+  <div class="text-center" id="personal-sections">
     <div class="container">
-      {% block user_name %}
-        <h2>Личный кабинет</h2>
-      {% endblock user_name %}
-      <div class="box">
-        <div class="card">
-          <div class="imgBx">
-              <img src="{% static 'img/portfolio-small.jpg' %}">
+      <h2>Личный кабинет</h2>
+      <div class="row center">
+        <div class="box">
+          <div class="card col-xs-12 col-sm-6 col-md-4">
+            <div class="imgBx">
+              <img src="{% static 'img/portfolio-small.jpg' %}" class="img-responsive">
+            </div>
+            <div class="details">
+              <h2>Портфель</h2>
+            </div>
           </div>
-          <div class="details">
-            <h2>Портфель</h2>
+          <div class="card col-xs-12 col-sm-6 col-md-4">
+            <div class="imgBx">
+              <img src="{% static 'img/trade-small.jpg' %}" class="img-responsive">
+            </div>
+            <div class="details">
+              <h2>Сделки</h2>
+            </div>
+          </div>
+          <div class="card col-xs-12 col-sm-6 col-md-4">
+            <div class="imgBx">
+              <img src="{% static 'img/dividends.jpeg' %}" class="img-responsive">
+            </div>
+            <div class="details">
+              <h2>Дивиденды</h2>
+            </div>
           </div>
         </div>
       </div>

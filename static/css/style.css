@@ -150,7 +150,7 @@ header .intro-text {
 /* News section */
 #news .item {
 	margin: 20px 0 20px;
-}
+} 
 #news .container .item:hover {
 	transform: scale(1.03);
     transition-timing-function: ease-in;
@@ -209,24 +209,22 @@ header .intro-text {
 #share_header .container .item:hover {
 	opacity: 0.5;
 }
-/* Card */
 .box{
-    width: 800px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    grid-gap: 15px;
-    margin: 30px auto auto auto;
+	display: block;
+	margin-left:10%;
+	margin-right:15%;
+	width: 80%;
 }
 .card{
-    position: relative;
-    width: 250px;
+	position: flex;
+	width: 250px;
     height: 300px;
-    background: #fff;
-    margin: 0 auto;
+	background: #fff;
+	margin: 30px;
     border-radius: 4px;
     box-shadow:0 2px 10px rgba(0,0,0,.2);
 }
-.card:before,
+/* .card:before,
 .card:after
 {
     content:"";
@@ -247,7 +245,7 @@ header .intro-text {
 .card:hover:after{
 	transform: rotate(10deg);
 	box-shadow: 0 2px 20px rgba(0,0,0,.2);
-}
+} */
 .card .imgBx{
 	position: absolute;
 	top: 10px;
@@ -257,11 +255,12 @@ header .intro-text {
 	background: #222;
 	transition: 0.5s;
 	z-index: 1;
+	bottom: 55px;
 }
-.card:hover .imgBx
+/* .card:hover .imgBx
 {
-    bottom: 60px;
-}
+    bottom: 55px;
+} */
 .card .imgBx img{
 	position: absolute;
 	top: 0;
@@ -275,7 +274,7 @@ header .intro-text {
 	left: 10px;
 	right: 10px;
 	bottom: 10px;
-	height: 40px;
+	height: 30px;
 	text-align: center;
 }
 .card .details h2{
