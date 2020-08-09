@@ -110,6 +110,7 @@
           </div>
         </div>
         <div class="col-xs-12 col-md-6">
+          {% if user.is_authenticated %}
           <form action="{% url 'add_share' user.id share.id %}" method="post" id="remove-article">
             {% csrf_token %}
             <div id="button-center">
@@ -118,6 +119,7 @@
               </div>
             </div>
           </form>
+          {% endif %}
         </div>
       </div>
     </div>
