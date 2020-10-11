@@ -32,7 +32,15 @@ def get_world_trading_data_payload(symbol, apikey):
     return args
 
 
-def download_data_csv(symbol, data_url, request_args, apikey, folder):
+def get_marketstack_payload(symbol, apikey):
+    args = {
+        'access_key': apikey,
+        'symbols': symbol
+    }
+    return args
+
+
+def download_data_csv(symbol, data_url, request_args, folder):
     download = requests.get(data_url, params=request_args)
     print('Sending request for CSV to ' + download.url)
     if download.status_code == requests.codes.ok:
@@ -48,17 +56,38 @@ def download_data_csv(symbol, data_url, request_args, apikey, folder):
         print('CSV is saved into: ' + output_name)
 
 
+def download_data_json(symbol, data_url, request_args, folder):
+    download = requests.get(data_url, params=request_args)
+    print('Sending request for JSON to ' + download.url)
+    if download.status_code == requests.codes.ok:
+        print("Successful request!")
+    else:
+        download.raise_for_status()
+    # decode binary content
+    content = download.content.decode('utf-8')
+    # store content to data folder
+    output_name = folder + '/' + symbol + '.json'
+    with open(output_name, 'w') as output:
+        output.write(content)
+        print('JSON is saved into: ' + output_name)
+
+
 def download_share_data_alpha(symbol, url, apikey='demo', folder=''):
     payload = get_share_payload(symbol, apikey)
-    download_data_csv(symbol, url, payload, apikey, folder)
+    download_data_csv(symbol, url, payload, folder)
 
 
 def download_share_data_wtd(symbol, url, apikey='demo', folder=''):
     payload = get_world_trading_data_payload(symbol, apikey)
-    download_data_csv(symbol, url, payload, apikey, folder)
+    download_data_csv(symbol, url, payload, folder)
+
+
+def download_share_data_marketstack(symbol, url, apikey='demo', folder=''):
+    payload = get_marketstack_payload(symbol, apikey)
+    download_data_json(symbol, url, payload, folder)
 
 
 def download_fx_data(base_ccy, ccy, url, apikey='demo', folder=''):
     payload = get_fx_payload(base_ccy, ccy, apikey)
     symbol = base_ccy + ccy
-    download_data_csv(symbol, url, payload, apikey, folder)
+    download_data_csv(symbol, url, payload, folder)
