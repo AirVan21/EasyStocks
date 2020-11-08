@@ -57,5 +57,31 @@
       </div>
     </div>
   </div>
+  <div class="text-center" id="personal-portfolio">
+    <div class="container">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Тикер</th>
+            <th scope="col">Название</th>
+            <th scope="col">Страна</th>
+            <th scope="col">Сектор</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% block personal_deals %}
+            {% for share in portfolio_shares %}
+              <tr>
+                <td>{{ share.ticker }}</td>
+                <td>{{ share.title }}</td>
+                <td>{{ share.countryCode }}</td>
+                <td>{{ share.sector }}</td>
+              </tr>
+            {% endfor %}
+          {% endblock personal_deals %}
+        </tbody>
+      </table>
+    </div>
+  </div>
 </body>
 {% endblock content %}

@@ -224,7 +224,7 @@ header .intro-text {
     border-radius: 4px;
     box-shadow:0 2px 10px rgba(0,0,0,.2);
 }
-/* .card:before,
+.card:before,
 .card:after
 {
     content:"";
@@ -245,7 +245,7 @@ header .intro-text {
 .card:hover:after{
 	transform: rotate(10deg);
 	box-shadow: 0 2px 20px rgba(0,0,0,.2);
-} */
+}
 .card .imgBx{
 	position: absolute;
 	top: 10px;
@@ -257,10 +257,6 @@ header .intro-text {
 	z-index: 1;
 	bottom: 55px;
 }
-/* .card:hover .imgBx
-{
-    bottom: 55px;
-} */
 .card .imgBx img{
 	position: absolute;
 	top: 0;

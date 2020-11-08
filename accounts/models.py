@@ -10,7 +10,15 @@ class Person(User):
 
 class Portfolio(models.Model):
     title = models.CharField(max_length=200)
-    shares = models.ManyToManyField('stocks.Share')
+    owner = models.ForeignKey(
+        'Person',
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
+    )
+    shares = models.ManyToManyField(
+        'stocks.Share'
+    )
 
     def __str__(self):
-        return self.title
+        return ' '.join([self.owner.__str__(), self.title])
