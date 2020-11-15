@@ -42,14 +42,20 @@ def download_and_draw_share(share_name, mdp_folder, mdp_url, storage_path, img_p
     data_item_loader = ShareDataItemLoader(csv_path, share_name)
     manager = DataManager(csv_path)
     if mdp_folder == 'alphavantage':
-        download_share_data_alpha(
-            share_name,
-            mdp_url,
-            ALPHA_DOWNLOAD_KEY,
-            storage_path
-        )
-        generate_candle_image(csv_path, weeks_count, img_path)
-        data_item_loader.load_update()
+        try:
+            download_share_data_alpha(
+                share_name,
+                mdp_url,
+                ALPHA_DOWNLOAD_KEY,
+                storage_path
+            )
+            generate_candle_image(csv_path, weeks_count, img_path)
+            data_item_loader.load_update()
+        except KeyError as keyError:
+            logger.info(
+                "Exception happened while share data is processed: ",
+                keyError
+            )
     elif mdp_folder == 'worldtradingdata':
         return
         # Don't use worldtradingdata service
