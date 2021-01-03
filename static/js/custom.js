@@ -24,6 +24,102 @@
 
 (function ($) {
   "use strict";
+    $('#tech-usa-stock-carousel').owlCarousel({
+        loop:true,
+        margin:20,
+        responsiveClass:true,
+        responsive:{
+            0:{
+                items:1,
+                nav:false
+            },
+            750:{
+              items:2,
+              nav:false,
+            },
+            970:{
+                items:3,
+                nav:false
+            }
+        }
+    });
+
+})(jQuery);
+
+(function ($) {
+  "use strict";
+    $('#non-tech-usa-stock-carousel').owlCarousel({
+        loop:true,
+        margin:20,
+        responsiveClass:true,
+        responsive:{
+            0:{
+                items:1,
+                nav:false
+            },
+            750:{
+              items:2,
+              nav:false,
+            },
+            970:{
+                items:3,
+                nav:false
+            }
+        }
+    });
+
+})(jQuery);
+
+(function ($) {
+  "use strict";
+    $('#materials-rus-stock-carousel').owlCarousel({
+        loop:true,
+        margin:20,
+        responsiveClass:true,
+        responsive:{
+            0:{
+                items:1,
+                nav:false
+            },
+            750:{
+              items:2,
+              nav:false,
+            },
+            970:{
+                items:3,
+                nav:false
+            }
+        }
+    });
+
+})(jQuery);
+
+(function ($) {
+  "use strict";
+    $('#non-materials-rus-stock-carousel').owlCarousel({
+        loop:true,
+        margin:20,
+        responsiveClass:true,
+        responsive:{
+            0:{
+                items:1,
+                nav:false
+            },
+            750:{
+              items:2,
+              nav:false,
+            },
+            970:{
+                items:3,
+                nav:false
+            }
+        }
+    });
+
+})(jQuery);
+
+(function ($) {
+  "use strict";
     $('#div-carousel').owlCarousel({
         loop:true,
         margin:20,

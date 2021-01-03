@@ -1,4 +1,4 @@
-from django.shortcuts import get_list_or_404, redirect
+from django.shortcuts import redirect
 from django.views.generic import ListView, DetailView
 from .models import (
     Share,
@@ -24,8 +24,22 @@ class ShareListView(ListView):
         context['news_list'] = Article.objects.all()
         context['share_rus'] = Share.objects.filter(countryCode='RUS')
         context['share_usa'] = Share.objects.filter(countryCode='USA')
-        context['tech'] = Share.objects.filter(sector='tech')
-        context['materials'] = Share.objects.filter(sector='materials')
+        context['tech_usa'] = Share.objects.filter(
+            sector='tech').filter(
+            countryCode='USA'
+        )
+        context['non_tech_usa'] = Share.objects.filter(
+            countryCode='USA').exclude(
+            sector='tech'
+        )
+        context['materials_rus'] = Share.objects.filter(
+            sector='materials').filter(
+            countryCode='RUS'
+        )
+        context['non_materials_rus'] = Share.objects.filter(
+            countryCode='RUS').exclude(
+            sector='materials'
+        )
         context['share_rus_trends'] = self.get_trends(context['share_rus'])
         context['share_usa_trends'] = self.get_trends(context['share_usa'])
         context['dividends'] = Dividend.objects.all().order_by('-date')

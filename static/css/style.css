@@ -138,6 +138,9 @@ header .intro-text {
 #stocks .chart {
 	margin: 15px 0 15px;
 }
+#stocks a {
+	text-decoration: none;
+}
 #stocks .container .chart:hover {
     transform: scale(1.05);
     transition-timing-function: ease-in;

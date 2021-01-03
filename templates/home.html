@@ -129,14 +129,28 @@
       <div class="container">
         {% block content %}
           <div class="row">
-            {% for share in share_usa|slice:":6" %}
-            <a href="{% url 'share_detail' share.pk %}">
-              <div class="col-xs-12 col-sm-6 col-md-4 chart">
-                  <h3 class="text-center">{{ share.title }}</h3>
-                  <img src="{% get_static_prefix %}img/stocks/{{ share.ticker }}.png" class="img-responsive center-block" alt="">
+            <div id="tech-usa-stock-carousel" class="owl-carousel owl-theme">
+              {% for share in tech_usa %}
+                <a href="{% url 'share_detail' share.pk %}">
+                  <div class="chart">
+                    <h3 class="text-center">{{ share.title }}</h3>
+                    <img src="{% get_static_prefix %}img/stocks/{{ share.ticker }}.png" class="img-responsive" alt="">
+                  </div>
+                </a>
+              {% endfor %}
+            </div>
+            <div class="row">
+              <div id="non-tech-usa-stock-carousel" class="owl-carousel owl-theme">
+                {% for share in non_tech_usa %}
+                  <a href="{% url 'share_detail' share.pk %}">
+                    <div class="chart">
+                      <h3 class="text-center">{{ share.title }}</h3>
+                      <img src="{% get_static_prefix %}img/stocks/{{ share.ticker }}.png" class="img-responsive" alt="">
+                    </div>
+                  </a>
+                {% endfor %}
               </div>
-            </a>
-            {% endfor %}
+            </div>
           </div>
         {% endblock content %}
     </div>
@@ -149,15 +163,29 @@
       </div>
       <div class="container">
         {% block content_rus %}
+          <div clas="row">
+            <div id="non-materials-rus-stock-carousel" class="owl-carousel owl-theme">
+              {% for share in non_materials_rus %}
+                <a href="{% url 'share_detail' share.pk %}">
+                  <div class="chart">
+                    <h3 class="text-center">{{ share.title }}</h3>
+                    <img src="{% get_static_prefix %}img/stocks/{{ share.ticker }}.png" class="img-responsive" alt="">
+                  </div>
+                </a>
+              {% endfor %}
+            </div>
+          </div>
           <div class="row">
-            {% for share in share_rus|slice:":6" %}
-            <a href="{% url 'share_detail' share.pk %}">
-              <div class="col-xs-12 col-sm-6 col-md-4 chart">
-                <h3 class="text-center">{{ share.title }}</h3>
-                <img src="{% get_static_prefix %}img/stocks/{{ share.ticker }}.png" class="img-responsive center-block" alt="">
-              </div>
-            </a>
-            {% endfor %}
+            <div id="materials-rus-stock-carousel" class="owl-carousel owl-theme">
+              {% for share in materials_rus %}
+                <a href="{% url 'share_detail' share.pk %}">
+                  <div class="chart">
+                    <h3 class="text-center">{{ share.title }}</h3>
+                    <img src="{% get_static_prefix %}img/stocks/{{ share.ticker }}.png" class="img-responsive" alt="">
+                  </div>
+                </a>
+              {% endfor %}
+            </div>
           </div>
         {% endblock content_rus %}
     </div>
