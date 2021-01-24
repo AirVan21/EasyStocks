@@ -35,7 +35,8 @@ def get_world_trading_data_payload(symbol, apikey):
 def get_marketstack_payload(symbol, apikey):
     args = {
         'access_key': apikey,
-        'symbols': symbol
+        'symbols': symbol,
+        'limit': 500
     }
     return args
 
