@@ -141,12 +141,11 @@ CELERY_IMPORTS = ["stocks.tasks"]
 CELERY_BEAT_SCHEDULE = {
     'download_data_task': {
         'task': 'stocks.tasks.download_data_task',
-        'schedule': crontab(minute=45, hour=18),
-        # 'schedule': 60.0,
+        'schedule': crontab(minute=45, hour=18, day_of_week='friday'),
     },
     'download_fx_data_task': {
         'task': 'stocks.tasks.download_fx_data_task',
-        'schedule': crontab(minute=55, hour=19),
+        'schedule': crontab(minute=55, hour=19, day_of_week='friday'),
     },
     'download_news_task': {
         'task': 'stocks.tasks.download_news_task',
