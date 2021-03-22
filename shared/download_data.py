@@ -1,4 +1,5 @@
 import requests
+from datetime import datetime
 
 
 def get_share_payload(symbol, apikey):
@@ -33,10 +34,25 @@ def get_world_trading_data_payload(symbol, apikey):
 
 
 def get_marketstack_payload(symbol, apikey):
+    '''
+    Returns URL arguments for the request to Marketstack
+    '''
     args = {
         'access_key': apikey,
         'symbols': symbol,
         'limit': 500
+    }
+    return args
+
+
+def get_moex_payload(date, start=0):
+    '''
+    Returns URL arguments for the request to MOEX
+    '''
+    args = {
+        'limit': 100,
+        'date': date.strftime('%Y-%m-%d'),
+        'start': start
     }
     return args
 
@@ -73,6 +89,22 @@ def download_data_json(symbol, data_url, request_args, folder):
         print('JSON is saved into: ' + output_name)
 
 
+def download_data_xml(date, data_url, request_args, folder):
+    download = requests.get(data_url, params=request_args)
+    print('Sending request for XML to ' + download.url)
+    if download.status_code == requests.codes.ok:
+        print("Successful request!")
+    else:
+        download.raise_for_status()
+    # decode binary content
+    content = download.content.decode('utf-8')
+    # store content to data folder
+    output_name = folder + '/moex-' + date.strftime('%Y-%m-%d') + '.xml'
+    with open(output_name, 'w') as output:
+        output.write(content)
+        print('XML is saved into: ' + output_name)
+
+
 def download_share_data_alpha(symbol, url, apikey='demo', folder=''):
     payload = get_share_payload(symbol, apikey)
     download_data_csv(symbol, url, payload, folder)
@@ -86,6 +118,12 @@ def download_share_data_wtd(symbol, url, apikey='demo', folder=''):
 def download_share_data_marketstack(symbol, url, apikey='demo', folder=''):
     payload = get_marketstack_payload(symbol, apikey)
     download_data_json(symbol, url, payload, folder)
+
+
+def download_share_data_moex(date, url, folder=''):
+    date = datetime.strptime(date, '%Y-%m-%d')
+    payload = get_moex_payload(date)
+    download_data_xml(date, url, payload, folder)
 
 
 def download_fx_data(base_ccy, ccy, url, apikey='demo', folder=''):
