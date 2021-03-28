@@ -1,5 +1,6 @@
 import requests
 from datetime import datetime
+from data_reader_moex import DataReaderMOEX
 
 
 def get_share_payload(symbol, apikey):
@@ -71,6 +72,7 @@ def download_data_csv(symbol, data_url, request_args, folder):
     with open(output_name, 'w') as output:
         output.write(content)
         print('CSV is saved into: ' + output_name)
+    return output_name
 
 
 def download_data_json(symbol, data_url, request_args, folder):
@@ -87,6 +89,7 @@ def download_data_json(symbol, data_url, request_args, folder):
     with open(output_name, 'w') as output:
         output.write(content)
         print('JSON is saved into: ' + output_name)
+    return output_name
 
 
 def download_data_xml(date, data_url, request_args, folder):
@@ -99,31 +102,46 @@ def download_data_xml(date, data_url, request_args, folder):
     # decode binary content
     content = download.content.decode('utf-8')
     # store content to data folder
-    output_name = folder + '/moex-' + date.strftime('%Y-%m-%d') + '.xml'
+    output_name = folder + '/moex-' + date.strftime('%Y-%m-%d') + '-' \
+        + str(request_args['start']) + '.xml'
     with open(output_name, 'w') as output:
         output.write(content)
         print('XML is saved into: ' + output_name)
+    return output_name
 
 
 def download_share_data_alpha(symbol, url, apikey='demo', folder=''):
     payload = get_share_payload(symbol, apikey)
-    download_data_csv(symbol, url, payload, folder)
+    return download_data_csv(symbol, url, payload, folder)
 
 
 def download_share_data_wtd(symbol, url, apikey='demo', folder=''):
     payload = get_world_trading_data_payload(symbol, apikey)
-    download_data_csv(symbol, url, payload, folder)
+    return download_data_csv(symbol, url, payload, folder)
 
 
 def download_share_data_marketstack(symbol, url, apikey='demo', folder=''):
     payload = get_marketstack_payload(symbol, apikey)
-    download_data_json(symbol, url, payload, folder)
+    return download_data_json(symbol, url, payload, folder)
 
 
-def download_share_data_moex(date, url, folder=''):
+def download_share_data_moex(date, url, start=0, folder=''):
+    payload = get_moex_payload(date, start)
+    return download_data_xml(date, url, payload, folder)
+
+
+def download_share_data_moex_full(date, url, folder=''):
+    start = 0
     date = datetime.strptime(date, '%Y-%m-%d')
-    payload = get_moex_payload(date)
-    download_data_xml(date, url, payload, folder)
+    payload = get_moex_payload(date, start)
+    first_page = download_share_data_moex(date, url, start, folder)
+    dataReader = DataReaderMOEX(first_page)
+    total_rows = dataReader.get_total_rows()
+    limit_value = payload['limit']
+    page_names = [first_page]
+    for start_value in range(limit_value, total_rows, limit_value):
+        page_name = download_share_data_moex(date, url, start_value, folder)
+        page_names.append(page_name)
 
 
 def download_fx_data(base_ccy, ccy, url, apikey='demo', folder=''):

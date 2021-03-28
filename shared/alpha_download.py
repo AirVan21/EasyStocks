@@ -1,5 +1,5 @@
 import argparse
-from shared.download_data import download_share_data_alpha
+from download_data import download_share_data_alpha
 
 
 def get_aggregator_alpha():

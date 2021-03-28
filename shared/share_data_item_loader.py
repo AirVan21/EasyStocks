@@ -14,8 +14,10 @@ class ShareDataItemLoader(object):
             print('Did not find related share!')
             return
         csv_file = pd.read_csv(self.path, delimiter=',')
-        csv_file['timestamp'] = pd.to_datetime(csv_file['timestamp'],
-                                               errors='ignore')
+        csv_file['timestamp'] = pd.to_datetime(
+            csv_file['timestamp'],
+            errors='ignore'
+        )
         csv_file.sort_values(by=['timestamp'], inplace=True, ascending=False)
         csv_file = csv_file.head(count)
         self.load_csv(share_items.first(), csv_file)
@@ -26,12 +28,16 @@ class ShareDataItemLoader(object):
             print('Did not find related share!')
             return
         csv_file = pd.read_csv(self.path, delimiter=',')
-        csv_file['timestamp'] = pd.to_datetime(csv_file['timestamp'],
-                                               errors='ignore')
+        csv_file['timestamp'] = pd.to_datetime(
+            csv_file['timestamp'],
+            errors='ignore'
+        )
         csv_file.sort_values(by=['timestamp'], inplace=True, ascending=False)
         # Last share data items
         selected_share = share_items.first()
-        share_data_items = ShareDataItem.objects.filter(share=selected_share).order_by('-date')
+        share_data_items = ShareDataItem.objects.filter(
+            share=selected_share
+        ).order_by('-date')
         if not share_data_items:
             self.load_csv(selected_share, csv_file)
         else:

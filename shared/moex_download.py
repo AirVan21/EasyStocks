@@ -1,7 +1,6 @@
 
 import argparse
-from datetime import datetime
-from download_data import download_share_data_moex
+from download_data import download_share_data_moex_full
 
 
 if __name__ == '__main__':
@@ -10,4 +9,4 @@ if __name__ == '__main__':
     parser.add_argument('folder', metavar='folder', type=str, nargs='?', help='folder for storage')
     args = parser.parse_args()
     url = 'https://iss.moex.com/iss/history/engines/stock/markets/shares/securities.xml?'
-    download_share_data_moex(args.date, url, args.folder)
+    download_share_data_moex_full(args.date, url, args.folder)
