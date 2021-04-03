@@ -49,6 +49,9 @@ class ShareDataItem(models.Model):
     close_price = models.FloatField()
     volume = models.FloatField()
 
+    def __str__(self):
+        return self.share.__str__() + ' ' + str(self.date)
+
 
 class CurrencyInstrument(models.Model):
     title = models.CharField(max_length=200)

@@ -1,6 +1,6 @@
 import requests
 from datetime import datetime
-from data_reader_moex import DataReaderMOEX
+from shared.data_reader_moex import DataReaderMOEX
 
 
 def get_share_payload(symbol, apikey):

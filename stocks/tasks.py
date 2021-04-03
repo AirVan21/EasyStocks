@@ -40,7 +40,6 @@ def download_and_draw_share(share_name, mdp_folder, mdp_url, storage_path, img_p
     weeks_count = 52
     logger.info('Processing ' + share_name + ' ' + storage_path)
     data_item_loader = ShareDataItemLoader(csv_path, share_name)
-    manager = DataManager(csv_path)
     if mdp_folder == 'alphavantage':
         try:
             download_share_data_alpha(
@@ -53,7 +52,7 @@ def download_and_draw_share(share_name, mdp_folder, mdp_url, storage_path, img_p
             data_item_loader.load_update()
         except KeyError as keyError:
             logger.info(
-                'Exception happened while share data is processed: ' + str(keyError)
+                'Exception happened while data is processed: ' + str(keyError)
             )
     elif mdp_folder == 'worldtradingdata':
         return
@@ -64,6 +63,7 @@ def download_and_draw_share(share_name, mdp_folder, mdp_url, storage_path, img_p
             WORLD_TRADING_DATA_KEY,
             storage_path
         )
+        manager = DataManager(csv_path)
         manager.resample_daily_data_to_weekly(get_aggregator_wtd())
         manager.rename_columns(get_column_name_mapping())
         generate_candle_image(csv_path, weeks_count, img_path)
