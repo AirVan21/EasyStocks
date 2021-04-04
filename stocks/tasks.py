@@ -1,6 +1,7 @@
 from __future__ import absolute_import, unicode_literals
 import os
 from celery import task, chain
+from datetime import datetime
 from shared.data_manager import DataManager
 from shared.share_data_item_loader import ShareDataItemLoader
 from shared.plotly_draw import (
@@ -8,8 +9,10 @@ from shared.plotly_draw import (
     generate_fx_image
 )
 from shared.download_data import (
-    download_share_data_alpha, download_fx_data,
-    download_share_data_wtd
+    download_share_data_alpha,
+    download_fx_data,
+    download_share_data_wtd,
+    download_share_data_moex_full
 )
 from shared.world_trading_download import (
     get_column_name_mapping,
@@ -28,7 +31,8 @@ from shared.keys import (
 from stocks.models import (
     Share,
     CurrencyInstrument,
-    Article
+    Article,
+    MarketDataProvider
 )
 
 
@@ -39,7 +43,7 @@ def download_and_draw_share(share_name, mdp_folder, mdp_url, storage_path, img_p
     csv_path = ''.join([storage_path, '/', share_name, '.csv'])
     weeks_count = 52
     logger.info('Processing ' + share_name + ' ' + storage_path)
-    data_item_loader = ShareDataItemLoader(csv_path, share_name)
+    data_item_loader = ShareDataItemLoader(csv_path)
     if mdp_folder == 'alphavantage':
         try:
             download_share_data_alpha(
@@ -49,7 +53,7 @@ def download_and_draw_share(share_name, mdp_folder, mdp_url, storage_path, img_p
                 storage_path
             )
             generate_candle_image(csv_path, weeks_count, img_path)
-            data_item_loader.load_update()
+            data_item_loader.load_update(share_name)
         except KeyError as keyError:
             logger.info(
                 'Exception happened while data is processed: ' + str(keyError)
@@ -67,7 +71,9 @@ def download_and_draw_share(share_name, mdp_folder, mdp_url, storage_path, img_p
         manager.resample_daily_data_to_weekly(get_aggregator_wtd())
         manager.rename_columns(get_column_name_mapping())
         generate_candle_image(csv_path, weeks_count, img_path)
-        data_item_loader.load_update()
+        data_item_loader.load_update(share_name)
+    elif mdp_folder == 'moex':
+        logger.info('Share data will be loaded from MOEX xml file.')
     else:
         logger.info('No market data provider specified!')
         return
@@ -85,6 +91,9 @@ def download_and_draw_fx(base_ccy, ccy, mdp_url, storage_path, img_path):
 
 @task
 def download_data_task():
+    '''
+    Creates share data downloading chain
+    '''
     root_path = os.path.abspath(os.path.dirname(__name__))
     storage_path = root_path + '/static/data'
     img_path_shares = root_path + '/static/img/stocks'
@@ -109,6 +118,9 @@ def download_data_task():
 
 @task
 def download_fx_data_task():
+    '''
+    Creates FX data downloading task chain
+    '''
     root_path = os.path.abspath(os.path.dirname(__name__))
     storage_path = root_path + '/static/data'
     img_path_fx = root_path + '/static/img/currency'
@@ -134,6 +146,9 @@ def download_fx_data_task():
 
 @task
 def download_and_store_news(share_name, share_id):
+    '''
+    Downloads last news and stores them in database
+    '''
     from_date, to_date = get_start_end_week_dates()
     logger = download_and_store_news.get_logger()
     logger.info('Downloading news for ' + share_name)
@@ -174,6 +189,9 @@ def download_and_store_news(share_name, share_id):
 
 @task
 def download_news_task():
+    '''
+    Creates a news downloading task chain
+    '''
     news_tasks = [
         download_and_store_news.signature(
             (
@@ -188,3 +206,21 @@ def download_news_task():
     logger = download_news_task.get_logger()
     logger.info("Starting news task chain!")
     chain(news_tasks).apply_async()
+
+
+@task
+def download_moex_data_task():
+    '''
+    Downloads MOEX XML files with end-of-day data
+    '''
+    root_path = os.path.abspath(os.path.dirname(__name__))
+    provider = MarketDataProvider.objects.get(title='MOEX')
+    storage_path = root_path + '/static/data/' + provider.folder
+    xml_paths = download_share_data_moex_full(
+        datetime.now().strftime('%Y-%m-%d'),
+        provider.url,
+        storage_path
+    )
+    logger = download_moex_data_task.get_logger()
+    for path in xml_paths:
+        logger.info('Downloaded ' + path)

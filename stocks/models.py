@@ -79,7 +79,7 @@ class Article(models.Model):
     )
 
     def __str__(self):
-        return self.title
+        return str(self.share) + ' ' + self.title
 
     @staticmethod
     def are_valid_arguments(article_dict):
