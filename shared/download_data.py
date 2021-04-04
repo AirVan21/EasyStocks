@@ -142,6 +142,7 @@ def download_share_data_moex_full(date, url, folder=''):
     for start_value in range(limit_value, total_rows, limit_value):
         page_name = download_share_data_moex(date, url, start_value, folder)
         page_names.append(page_name)
+    return page_names
 
 
 def download_fx_data(base_ccy, ccy, url, apikey='demo', folder=''):
