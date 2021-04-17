@@ -1,5 +1,6 @@
-import pandas as pd
 import argparse
+import pandas as pd
+import xml.etree.ElementTree as ET
 from stocks.models import ShareDataItem, Share
 
 
@@ -69,6 +70,32 @@ class ShareDataItemLoader(object):
             )
             data_share_item.save()
 
+    def load_moex_xml(self, date):
+        '''
+        Loads end-of-day data related to MOEX shares from the xml to database
+        '''
+        tree = ET.parse(self.path)
+        root = tree.getroot()
+        rows = root.findall('./data/rows/row')
+        stocks_rus = Share.objects.filter(countryCode='RUS')
+        ticker_to_stock_map = {}
+        for stock in stocks_rus:
+            ticker = stock.ticker
+            if '.' in ticker:
+                symbol, exchange = ticker.split('.')
+                ticker_to_stock_map[symbol] = stock
+        tqbr_rows = filter(lambda row: row.get('BOARDID') == 'TQBR', rows)
+        for row in tqbr_rows:
+            security_id = row.get('SECID')
+            if security_id not in ticker_to_stock_map:
+                continue
+            else:
+                open_value = row.get('OPEN')
+                high_value = row.get('HIGH')
+                low_value = row.get('LOW')
+                close_value = row.get('CLOSE')
+                print(date, security_id, f'open = {open_value} close = {close_value}')
+
     def clear_items(self, share_ticker):
         '''
         Removes share data items related to the share from the database
@@ -87,5 +114,3 @@ if __name__ == '__main__':
     args = parser.parse_args()
     # Loads
     loader = ShareDataItemLoader(args.path)
-    number_of_weeks = 52
-    loader.load_items_from_csv(args.ticker, number_of_weeks)
