@@ -94,6 +94,17 @@ class ShareDataItemLoader(object):
                 high_value = row.get('HIGH')
                 low_value = row.get('LOW')
                 close_value = row.get('CLOSE')
+                volume_value = row.get('VOLUME')
+                data_share_item = ShareDataItem(
+                    share=ticker_to_stock_map[security_id],
+                    date=date,
+                    open_price=open_value,
+                    high_price=high_value,
+                    low_price=low_value,
+                    close_price=close_value,
+                    volume=volume_value
+                )
+                data_share_item.save()
                 print(date, security_id, f'open = {open_value} close = {close_value}')
 
     def clear_items(self, share_ticker):
