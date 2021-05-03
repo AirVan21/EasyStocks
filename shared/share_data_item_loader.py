@@ -105,7 +105,7 @@ class ShareDataItemLoader(object):
                     volume=volume_value
                 )
                 data_share_item.save()
-                print(date, security_id, f'open = {open_value} close = {close_value}')
+                print(date, security_id, f'open = {open_value}, close = {close_value}')
 
     def clear_items(self, share_ticker):
         '''

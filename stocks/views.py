@@ -49,7 +49,8 @@ class ShareListView(ListView):
         positive = 0
         negative = 0
         for share_item in shares:
-            close_prices = ShareDataItem.objects.filter(share=share_item).values('close_price').order_by('-date')[:2]
+            close_prices = ShareDataItem.objects.filter(
+                share=share_item).values('close_price').order_by('-date')[:2]
             current, previous = close_prices[0]['close_price'], close_prices[1]['close_price']
             if (previous > current):
                 negative += 1
@@ -64,9 +65,12 @@ class ShareDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(ShareDetailView, self).get_context_data(**kwargs)
-        context['news'] = Article.objects.filter(share=self.object).order_by('-publish_dateTime')
+        context['news'] = Article.objects.filter(
+            share=self.object).order_by('-publish_dateTime')
         context['competitors'] = self.object.competitors.all()
-        context['chart_data'] = ShareDataItem.objects.filter(share=self.object).values('close_price', 'date', 'volume').order_by('-date')[:52]
+        chart_data = ShareDataItem.objects.filter(share=self.object).values(
+            'close_price', 'date', 'volume').order_by('-date')
+        context['chart_data'] = list(filter(self.is_friday_value, chart_data))[:52]
         context['dates'] = list(
             map(
                 lambda date: date['date'].strftime('%Y-%m-%d'),
@@ -76,28 +80,33 @@ class ShareDetailView(DetailView):
         context['products_values'] = list(
             map(
                 lambda item: item['revenue'],
-                Product.objects.filter(share=self.object).filter(date__year='2019').values('revenue').order_by('revenue')
+                Product.objects.filter(share=self.object).filter(
+                    date__year='2019').values('revenue').order_by('revenue')
             )
         )
         context['products_names'] = list(
             map(
                 lambda item: item['name'],
-                Product.objects.filter(share=self.object).filter(date__year='2019').values('name').order_by('revenue')
+                Product.objects.filter(share=self.object).filter(
+                    date__year='2019').values('name').order_by('revenue')
             )
         )
         context['customer_percentage'] = list(
             map(
                 lambda item: item['percentage'],
-                Customer.objects.filter(share=self.object).filter(date__year='2019').values('percentage').order_by('percentage')
+                Customer.objects.filter(share=self.object).filter(
+                    date__year='2019').values('percentage').order_by('percentage')
             )
         )
         context['customer_locations'] = list(
             map(
                 lambda item: item['location'],
-                Customer.objects.filter(share=self.object).filter(date__year='2019').values('location').order_by('percentage')
+                Customer.objects.filter(share=self.object).filter(
+                    date__year='2019').values('location').order_by('percentage')
             )
         )
-        indicators = Indicators.objects.filter(share=self.object).values('revenue', 'earnings', 'date__year').order_by('date')
+        indicators = Indicators.objects.filter(share=self.object).values(
+            'revenue', 'earnings', 'date__year').order_by('date')
         context['revenue'] = list(
             map(
                 lambda item: item['revenue'],
@@ -124,7 +133,15 @@ class ShareDetailView(DetailView):
 
     @staticmethod
     def delete_article(request, share_id, article_id):
+        '''
+        Deletes article from the database
+        '''
         if request.method == 'POST':
             article = Article.objects.get(pk=article_id)
             article.delete()
             return redirect(''.join(['/share/', str(share_id)]))
+
+    @staticmethod
+    def is_friday_value(value):
+        ''' Verifies if database item represents Friday EOD data '''
+        return value['date'].weekday() == 4  # Friday
