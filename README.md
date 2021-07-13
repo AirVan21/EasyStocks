@@ -6,7 +6,7 @@
 
 ---
 
-## Technologies:
+## Technologies
 * [Django](https://docs.djangoproject.com/en/3.1/)
 * [Alpha Vantage API](https://www.alphavantage.co/) for getting a financial data
 * [Plotly](https://plot.ly/) for data visualization
@@ -14,5 +14,5 @@
 * [Celery](http://docs.celeryproject.org/en/latest/#) for task scheduling
 * [NewsAPI](https://newsapi.org/) for news
 
-## Link:
+## Link
 [EasyStocks on Heroku](https://easystocks.herokuapp.com/)
