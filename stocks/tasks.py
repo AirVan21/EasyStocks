@@ -1,8 +1,7 @@
 from __future__ import absolute_import, unicode_literals
 import os
 from celery import task, chain
-from datetime import datetime
-from shared.data_manager import DataManager
+from datetime import datetime, timedelta
 from shared.share_data_item_loader import ShareDataItemLoader
 from shared.plotly_draw import (
     generate_candle_image,
@@ -58,20 +57,6 @@ def download_and_draw_share(share_name, mdp_folder, mdp_url, storage_path, img_p
             logger.info(
                 'Exception happened while data is processed: ' + str(keyError)
             )
-    elif mdp_folder == 'worldtradingdata':
-        return
-        # Don't use worldtradingdata service
-        download_share_data_wtd(
-            share_name,
-            mdp_url,
-            WORLD_TRADING_DATA_KEY,
-            storage_path
-        )
-        manager = DataManager(csv_path)
-        manager.resample_daily_data_to_weekly(get_aggregator_wtd())
-        manager.rename_columns(get_column_name_mapping())
-        generate_candle_image(csv_path, weeks_count, img_path)
-        data_item_loader.load_update(share_name)
     elif mdp_folder == 'moex':
         logger.info('Share data will be loaded from MOEX xml file.')
     else:
@@ -216,11 +201,16 @@ def download_moex_data_task():
     root_path = os.path.abspath(os.path.dirname(__name__))
     provider = MarketDataProvider.objects.get(title='MOEX')
     storage_path = root_path + '/static/data/' + provider.folder
+    # MOEX historical data available only on the next day
+    timestamp = datetime.now() - timedelta(days=1)
     xml_paths = download_share_data_moex_full(
-        datetime.now().strftime('%Y-%m-%d'),
+        timestamp.strftime('%Y-%m-%d'),
         provider.url,
         storage_path
     )
     logger = download_moex_data_task.get_logger()
     for path in xml_paths:
         logger.info('Downloaded ' + path)
+        loader = ShareDataItemLoader(path)
+        loader.load_moex_xml(timestamp.date())
+
