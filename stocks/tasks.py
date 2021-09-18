@@ -10,12 +10,7 @@ from shared.plotly_draw import (
 from shared.download_data import (
     download_share_data_alpha,
     download_fx_data,
-    download_share_data_wtd,
     download_share_data_moex_full
-)
-from shared.world_trading_download import (
-    get_column_name_mapping,
-    get_aggregator_wtd
 )
 from shared.news_download import (
     get_news_api_payload,
@@ -24,7 +19,6 @@ from shared.news_download import (
 )
 from shared.keys import (
     ALPHA_DOWNLOAD_KEY,
-    WORLD_TRADING_DATA_KEY,
     NEWS_API_KEY
 )
 from stocks.models import (
@@ -61,7 +55,6 @@ def download_and_draw_share(share_name, mdp_folder, mdp_url, storage_path, img_p
         logger.info('Share data will be loaded from MOEX xml file.')
     else:
         logger.info('No market data provider specified!')
-        return
 
 
 @task
