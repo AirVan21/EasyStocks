@@ -157,7 +157,7 @@ class Indicators(models.Model):
     )
 
     def __str__(self):
-        return self.share.__str__()
+        return self.share.__str__() + ' (' + str(self.date) + ')'
 
 
 class Customer(models.Model):
