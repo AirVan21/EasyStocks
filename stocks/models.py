@@ -3,6 +3,9 @@ from django.utils.timezone import now
 
 
 class MarketDataProvider(models.Model):
+    '''
+    MarketDataProvider class represents market data source
+    '''
     title = models.CharField(max_length=200)
     url = models.CharField(max_length=200)
     folder = models.CharField(max_length=200)
@@ -12,6 +15,9 @@ class MarketDataProvider(models.Model):
 
 
 class Share(models.Model):
+    '''
+    Share class represents share instrument
+    '''
     title = models.CharField(max_length=200)
     ticker = models.CharField(max_length=10)
     text = models.TextField()
@@ -36,6 +42,10 @@ class Share(models.Model):
 
 
 class ShareDataItem(models.Model):
+    '''
+    ShareDataItem class represents share statistics
+    at specific date
+    '''
     share = models.ForeignKey(
         'Share',
         on_delete=models.CASCADE,

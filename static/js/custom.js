@@ -24,6 +24,26 @@
 
 (function ($) {
   "use strict";
+    $('#pie-results-carousel').owlCarousel({
+        loop:false,
+        margin:20,
+        responsiveClass:true,
+        responsive:{
+            0:{
+                items:1,
+                nav:false
+            },
+            750:{
+              items:2,
+              nav:false,
+            },
+        }
+    });
+
+})(jQuery);
+
+(function ($) {
+  "use strict";
     $('#tech-usa-stock-carousel').owlCarousel({
         loop:true,
         margin:20,
