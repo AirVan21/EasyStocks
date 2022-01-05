@@ -35,8 +35,29 @@ def generate_candle_image_from_db(share_item, weeks=52, output_folder=''):
     '''
     Generates candle image using data from the database
     '''
-    share_data = ShareDataItem.objects.filter(share=share_item).order_by('-date')
-    df = pd.DataFrame(list(share_data.values()))
+    def is_monday_record(share_data_item):
+        return share_data_item['date'].weekday() == 0
+
+    def is_friday_record(share_data_item):
+        return share_data_item['date'].weekday() == 4
+
+    share_data = ShareDataItem.objects.filter(share=share_item).order_by(
+        '-date'
+    )
+    # Code is not correct due to blank days for market data
+    monday_data_list = list(filter(is_monday_record, share_data.values()))
+    friday_data_list = list(filter(is_friday_record, share_data.values()))
+    for monday_data, friday_data in zip(monday_data_list, friday_data_list):
+        friday_data['open_price'] = monday_data['open_price']
+        friday_data['low_price'] = min(
+            friday_data['open_price'],
+            friday_data['close_price']
+        )
+        friday_data['high_price'] = max(
+            friday_data['open_price'],
+            friday_data['close_price']
+        )
+    df = pd.DataFrame(friday_data_list)
     last_df = df.head(weeks)
     trace = go.Candlestick(
         x=df.date,

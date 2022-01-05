@@ -206,4 +206,3 @@ def download_moex_data_task():
         logger.info('Downloaded ' + path)
         loader = ShareDataItemLoader(path)
         loader.load_moex_xml(timestamp.date())
-
