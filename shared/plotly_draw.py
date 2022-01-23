@@ -1,6 +1,7 @@
 import pandas as pd
 import plotly.graph_objs as go
 import plotly.io as pio
+from datetime import date, timedelta
 import os
 from stocks.models import ShareDataItem
 
@@ -31,40 +32,39 @@ def generate_candle_image(path_to_data, weeks=52, output_folder=''):
     print('Successfully created image ' + image_path)
 
 
-def generate_candle_image_from_db(share_item, weeks=52, output_folder=''):
+def generate_week_dates(start_date, weeks):
+    '''
+    Generates date pairs (monday, frinday) for a provided year
+    '''
+    monday = start_date + timedelta(days=(7 - start_date.weekday()))
+    for _ in range(weeks):
+        friday = monday + timedelta(days=4)
+        yield monday, friday
+        monday += timedelta(days=7)
+
+
+def generate_candle_image_from_db_by_weeks(share_item, start_date, weeks=52, output_folder=''):
     '''
     Generates candle image using data from the database
     '''
-    def is_monday_record(share_data_item):
-        return share_data_item['date'].weekday() == 0
-
-    def is_friday_record(share_data_item):
-        return share_data_item['date'].weekday() == 4
-
-    share_data = ShareDataItem.objects.filter(share=share_item).order_by(
-        '-date'
-    )
-    # Code is not correct due to blank days for market data
-    monday_data_list = list(filter(is_monday_record, share_data.values()))
-    friday_data_list = list(filter(is_friday_record, share_data.values()))
-    for monday_data, friday_data in zip(monday_data_list, friday_data_list):
-        friday_data['open_price'] = monday_data['open_price']
-        friday_data['low_price'] = min(
-            friday_data['open_price'],
-            friday_data['close_price']
-        )
-        friday_data['high_price'] = max(
-            friday_data['open_price'],
-            friday_data['close_price']
-        )
-    df = pd.DataFrame(friday_data_list)
-    last_df = df.head(weeks)
+    data = []
+    for monday, friday in generate_week_dates(start_date, weeks):
+        week_data = list(ShareDataItem.objects.filter(share=share_item).filter(date__range=[monday, friday]).order_by('-date'))
+        if week_data:
+            summary = {}
+            summary['open_price'] = week_data[-1].open_price
+            summary['close_price'] = week_data[0].close_price
+            summary['high_price'] = max(week_data, key=lambda item: item.high_price).high_price
+            summary['low_price'] = min(week_data, key= lambda item: item.low_price).low_price
+            summary['date'] = friday
+            data.append(summary)
+    df = pd.DataFrame(data)
     trace = go.Candlestick(
         x=df.date,
-        open=last_df.open_price,
-        high=last_df.high_price,
-        low=last_df.low_price,
-        close=last_df.close_price
+        open=df.open_price,
+        high=df.high_price,
+        low=df.low_price,
+        close=df.close_price
     )
     layout = go.Layout(xaxis=dict(rangeslider=dict(visible=False)))
     fig = go.Figure(data=[trace], layout=layout)
