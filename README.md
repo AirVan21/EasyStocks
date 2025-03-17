@@ -14,9 +14,6 @@
 * [Celery](http://docs.celeryproject.org/en/latest/#) for task scheduling
 * [NewsAPI](https://newsapi.org/) for news
 
-## Link
-[EasyStocks on Heroku](https://easystocks.herokuapp.com/)
-
 ## Running EasyStocks with Docker
 
 To run EasyStocks using Docker, follow these steps:
