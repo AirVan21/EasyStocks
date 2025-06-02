@@ -25,12 +25,12 @@ def get_start_end_week_dates():
 def download_news_json(args):
     url = 'https://newsapi.org/v2/everything?'
     download = requests.get(url, params=args)
-    print('Sending request for news ' + download.url)
+    print(f'Sending request for news {download.url}')
     if download.status_code == requests.codes.ok:
         print("Successful request!")
         # decode binary content
         content_json = json.loads(download.content)
-        articles = content_json['articles']
+        articles = content_json.get('articles', [])
         return articles
     else:
         download.raise_for_status()
